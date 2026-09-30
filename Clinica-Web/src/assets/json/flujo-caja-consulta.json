@@ -1,0 +1,40 @@
+[
+    {
+      "numeroSolicitud": 1023,
+      "idFlujoCaja": 9987,
+      "tipoDocumento": "DNI",
+      "numeroDocumento": "73854120",
+      "nombres":"CARLOS MINAYA SOLORZANO",
+      "estadoFlujoCaja":"1",
+      "estadoPropuesta":"Status 1",
+      "oficialNegocio":"MANUEL LOPEZ CASTRO",
+      "agencia":"Chiclayo",
+      "numeroCredito":"1005656634566"
+    },
+    {
+      "numeroSolicitud": 1024,
+      "idFlujoCaja": 9988,
+      "tipoDocumento": "DNI",
+      "numeroDocumento": "43854120",
+      "nombres":"LUIS MINAYA SOLORZANO",
+      "estadoFlujoCaja":"2",
+      "estadoPropuesta":"Status 2",
+      "oficialNegocio":"MARIA LOPEZ CASTRO",
+      "agencia":"Lima",
+      "numeroCredito":"1005609834111"
+    },
+    {
+      "numeroSolicitud": 1026,
+      "idFlujoCaja": 9989,
+      "tipoDocumento": "DNI",
+      "numeroDocumento": "25412548",
+      "nombres":"SHINA MINAYA SOLORZANO",
+      "estadoFlujoCaja":"3",
+      "estadoPropuesta":"Status 3",
+      "oficialNegocio":"PEDRO LOPEZ CASTRO",
+      "agencia":"Tacna",
+      "numeroCredito":"1006257834700"
+    }
+    
+  ]
+

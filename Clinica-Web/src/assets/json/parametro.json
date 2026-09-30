@@ -1,0 +1,142 @@
+[
+    {
+        "CodigoVersion": "202304003",
+        "DescripcionVersion": "Directiva Oficio Nro. 089-2023",
+        "Abreviatura": "",
+        "FechaUltimaActivacion": "15-04-2023",
+        "FechaInactivacion": "15-04-2023",
+        "FechaRegistro": "15-04-2023",
+        "UsuarioRegistro": "JPOMA",
+        "UsuarioModificacion": "JPOMA",
+        "Estado": false,
+        "ParametrosEFI":[],
+        "ParametrosGUF":[],
+        "ParametrosDPD":[],
+        "ParametrosDPI":[],
+        "ParametrosRatio": [],
+        "ParametrosTipoCliente":[],
+        "ParametrosRSECondicion":[],
+        "ParametrosComportamiento":[],
+        "ParametrosAlerta":[]
+    },
+    {
+        "codigoVersion": "202304002",
+        "descripcionVersion": "Directiva Oficio Nro. 085-2023",
+        "abreviatura": "",
+        "fechaUltimaActivacion": "09-04-2023",
+        "fechaInactivacion": "09-04-2023",
+        "fechaRegistro": "09-04-2023",
+        "usuarioRegistro": "JPOMA",
+        "usuarioModificacion": "JPOMA",
+        "estado": false,
+        "parametrosEFI":[{
+            "idParametroEFI": 1,
+            "codigoVersion": "202304002",
+            "nombreEFI": "CIMA",
+            "abreviatura": "IBK",
+            "estado": 1
+        },
+        {
+            "idParametroEFI": 2,
+            "codigoVersion": "202304002",
+            "nombreEFI": "Banco Continental BBVA",
+            "abreviatura": "BBVA",
+            "estado": 0
+        }],
+        "parametrosGUF":[{
+            "idParametroGUF": 1,
+            "codigoVersion": "202304002",
+            "nombreGUF": "Canasta Básica Familiar",
+            "editable": 1,
+            "estado": 1
+        }],
+        "parametrosDPD":[{
+            "idParametroDPD": 1,
+            "codigoVersion": "202304002",
+            "tipoTarjeta": "T. Consumo con Uso",
+            "factorConversion": 10,
+            "plazo": 7,
+            "tEM": 2.95,
+            "tEA": 41.7,
+            "comentario": "Comentario ABC"
+        }],
+        "parametrosDPI":[{
+            "idParametroDPI": 1,
+            "codigoVersion": "202304002",
+            "tipoAval": "Aval_Mype",
+            "factorCalificacionNormal": 2,
+            "factorCalificacionCPP": 20,
+            "factorCalificacionDeficiente": 35,
+            "factorCalificacionDudoso": 45,
+            "factorCalificacionPerdida": 100,
+            "tEM": 1.85,
+            "tEA": 24.6,
+            "plazo": 24.0,
+            "comentario": ""
+        }],
+        "parametrosRatio": [{
+            "idParametroRatio": 1,
+            "codigoVersion": "202304002",
+            "nombreRatio": "Sobreendeudamiento",
+            "regla": "Max",
+            "valorParametro": 70,
+            "calculo": "[((TCA) + (TCSF) + (TDP))] / (TEXD)",
+            "estado": 1
+        }],
+        "parametrosTipoCliente":[{
+            "idParametroTipoCliente": 1,
+            "codigoVersion": "202304002",
+            "descripcionTipoCliente": "Número de Meses",
+            "valorParametro": 36,
+            "comentario": ""
+        }],
+        "parametrosRSECondicion":[{
+            "idParametroRSECondicion": 1,
+            "codigoVersion": "202304002",
+            "rSE": "C1",
+            "criterio01": "OK",
+            "criterio02": "OK",
+            "criterio03": "OK",
+            "resultado": "Bajo",
+            "condicion": "No Expuesto",
+            "comentario": ""
+        }],
+        "parametrosComportamiento":[{
+            "idParametroComportamiento": 1,
+            "codigoVersion": "202304002",
+            "tipoCliente": "Nuevo",
+            "descripcionComportamiento": "Clasificacion SBS 100% Normal Sin clasificacion en los ultimos 6 meses - No ha tenido ningun credito Su ultimo credito cancelado fue hace 36 meses",
+            "comentario": ""
+        }],
+        "parametrosAlerta":[{
+            "idParametroAlerta": 1,
+            "codigoVersion": "202304002",
+            "nombreAlerta": "El efectivo del ESFA es menor a 10000. registrar comentarios correspondientes.",
+            "calculo": "Efectivo",
+            "regla": "Menor que",
+            "valorParametro": 10000,
+            "comentario": "Si el efectivo (proviene ESFA) es menor a 10000. Mostrar alerta 'Registrar Comentarios'",
+            "estado": 1
+        }]
+    },
+    {
+        "CodigoVersion": "202304001",
+        "DescripcionVersion": "Directiva Oficio Nro. 071-2023",
+        "Abreviatura": "",
+        "FechaUltimaActivacion": "03-04-2023",
+        "FechaInactivacion": "03-04-2023",
+        "FechaRegistro": "03-04-2023",
+        "UsuarioRegistro": "JPOMA",
+        "UsuarioModificacion": "JPOMA",
+        "Estado": true,
+        "ParametrosEFI":[],
+        "ParametrosGUF":[],
+        "ParametrosDPD":[],
+        "ParametrosDPI":[],
+        "ParametrosRatio": [],
+        "ParametrosTipoCliente":[],
+        "ParametrosRSECondicion":[],
+        "ParametrosComportamiento":[],
+        "ParametrosAlerta":[]
+    }
+]

@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v8.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v8.0": {
+      "MC.Business.Entity.Layer/1.0.0": {
+        "runtime": {
+          "MC.Business.Entity.Layer.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "MC.Business.Entity.Layer/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

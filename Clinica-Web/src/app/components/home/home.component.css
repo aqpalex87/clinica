@@ -1,0 +1,18 @@
+.icon-white {
+    color:white !important;
+}
+
+.home-hero {
+    text-align: center;
+    padding: 26px 18px;
+    background: #ffffff;
+    border-radius: 10px;
+    border: 1px solid #ececf2;
+    box-shadow: 0 6px 20px rgba(24, 39, 75, 0.05);
+}
+
+.home-hero img {
+    max-width: 760px;
+    width: 100%;
+    height: auto;
+}

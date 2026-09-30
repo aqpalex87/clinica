@@ -1,0 +1,95 @@
+<div class="login-page">
+  <div class="login-backdrop" aria-hidden="true">
+    <span class="orb orb-a"></span>
+    <span class="orb orb-b"></span>
+    <span class="orb orb-c"></span>
+  </div>
+
+  <section class="login-shell">
+    <aside class="login-hero">
+      <div class="hero-mark" aria-hidden="true">
+        <svg viewBox="0 0 64 64" fill="none">
+          <rect width="64" height="64" rx="18" fill="rgba(255,255,255,0.16)"/>
+          <path d="M32 14v16.2c0 1.3-.6 2.6-1.6 3.4L22 42.4A9.2 9.2 0 0 0 32 58a9.2 9.2 0 0 0 10-9.6l-8.4-8.8c-1-.8-1.6-2.1-1.6-3.4V14" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M27.2 14h9.6M25.4 33.2h13.2" stroke="#fff" stroke-width="2.6" stroke-linecap="round"/>
+          <circle cx="32" cy="48" r="2.4" fill="#ecfeff"/>
+        </svg>
+      </div>
+      <p class="hero-kicker">Laboratorio clínico</p>
+      <h2>Resultados claros para cada sede.</h2>
+      <p class="hero-copy">Ingresa para gestionar muestras, usuarios y la operación del laboratorio.</p>
+      <ul class="hero-points">
+        <li>Muestras y resultados</li>
+        <li>Usuarios y sedes</li>
+        <li>Acceso seguro</li>
+      </ul>
+    </aside>
+
+    <div class="login-card">
+      <div class="brand-logo">
+        <span class="brand-kicker">Portal clínico</span>
+        <p class="brand-sub">Inicia sesión para continuar</p>
+      </div>
+
+      <form class="login-form" (ngSubmit)="iniciarSesion()">
+        <div class="field">
+          <label for="codigoUsuario">Usuario</label>
+          <div class="control-wrap">
+            <i class="material-icons" aria-hidden="true">person_outline</i>
+            <input
+              id="codigoUsuario"
+              type="text"
+              class="control"
+              [(ngModel)]="codigoUsuario"
+              name="codigoUsuario"
+              autocomplete="username"
+              placeholder="Ingrese su usuario"
+            />
+          </div>
+        </div>
+        <div class="field">
+          <label for="password">Contraseña</label>
+          <div class="control-wrap">
+            <i class="material-icons" aria-hidden="true">lock_outline</i>
+            <input
+              id="password"
+              type="password"
+              class="control"
+              [(ngModel)]="password"
+              name="password"
+              autocomplete="current-password"
+              placeholder="Ingrese su contraseña"
+            />
+          </div>
+        </div>
+        <button type="submit" class="btn-primary" [disabled]="loading">
+          {{ loading ? 'Validando…' : 'Ingresar' }}
+        </button>
+      </form>
+    </div>
+  </section>
+</div>
+
+<p-dialog
+  [(visible)]="sedeModalVisible"
+  [modal]="true"
+  [closable]="false"
+  [draggable]="false"
+  [resizable]="false"
+  [dismissableMask]="false"
+  [style]="{ width: '28rem' }"
+  header="Seleccione sede"
+  styleClass="sede-login-dialog"
+>
+  <div class="sede-modal-content">
+    <p class="sede-modal-subtitle">Empresa: <strong>{{ empresaLogin?.nombre || '-' }}</strong></p>
+    <label for="idSedeSelect">Sede</label>
+    <select id="idSedeSelect" class="control browser-default" [(ngModel)]="idSede" name="idSedeSelect">
+      <option [ngValue]="null">Seleccione sede</option>
+      <option *ngFor="let s of sedes" [ngValue]="s.idSede">{{ s.nombre }}</option>
+    </select>
+  </div>
+  <ng-template pTemplate="footer">
+    <button type="button" class="btn-primary sede-confirm-btn" (click)="confirmarSede()">Continuar</button>
+  </ng-template>
+</p-dialog>

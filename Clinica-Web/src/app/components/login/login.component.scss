@@ -1,0 +1,313 @@
+.login-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  position: relative;
+  overflow: hidden;
+  font-family: 'Roboto', Helvetica, Arial, sans-serif;
+  background: #e7f6f4;
+}
+
+.login-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  background:
+    radial-gradient(circle at 12% 18%, rgba(20, 184, 166, 0.35), transparent 32%),
+    radial-gradient(circle at 88% 8%, rgba(56, 189, 248, 0.28), transparent 28%),
+    radial-gradient(circle at 78% 88%, rgba(13, 148, 136, 0.22), transparent 34%),
+    linear-gradient(160deg, #f3fbfa 0%, #d7f3ee 42%, #e8f1fb 100%);
+}
+
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(2px);
+}
+
+.orb-a {
+  width: 280px;
+  height: 280px;
+  left: -80px;
+  bottom: -60px;
+  background: rgba(15, 118, 110, 0.12);
+}
+
+.orb-b {
+  width: 180px;
+  height: 180px;
+  right: 8%;
+  top: 12%;
+  background: rgba(255, 255, 255, 0.55);
+}
+
+.orb-c {
+  width: 90px;
+  height: 90px;
+  right: 22%;
+  bottom: 16%;
+  border: 10px solid rgba(13, 148, 136, 0.15);
+  background: transparent;
+}
+
+.login-shell {
+  position: relative;
+  z-index: 1;
+  width: min(980px, 100%);
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  background: #ffffff;
+  border-radius: 28px;
+  overflow: hidden;
+  box-shadow: 0 30px 70px rgba(15, 78, 74, 0.16);
+}
+
+.login-hero {
+  padding: 3rem 2.6rem;
+  color: #f4fffc;
+  background:
+    linear-gradient(165deg, rgba(8, 70, 68, 0.2), rgba(8, 70, 68, 0.55)),
+    linear-gradient(160deg, #0f766e 0%, #115e59 55%, #134e4a 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.hero-mark {
+  width: 64px;
+  height: 64px;
+  margin-bottom: 1.4rem;
+}
+
+.hero-mark svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.hero-kicker {
+  margin: 0 0 0.6rem;
+  font-size: 0.78rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #99f6e4;
+  font-weight: 600;
+}
+
+.login-hero h2 {
+  margin: 0;
+  font-size: 2rem;
+  line-height: 1.2;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.hero-copy {
+  margin: 1rem 0 1.4rem;
+  max-width: 28rem;
+  color: rgba(240, 253, 250, 0.86);
+  font-size: 0.98rem;
+  line-height: 1.55;
+}
+
+.hero-points {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+}
+
+.hero-points li {
+  padding: 0.4rem 0.75rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  font-size: 0.8rem;
+}
+
+.login-card {
+  padding: 2.8rem 2.3rem;
+  background: #ffffff;
+  color: #134e4a;
+}
+
+.brand-logo {
+  margin-bottom: 1.8rem;
+}
+
+.brand-kicker {
+  display: block;
+  font-size: 0.75rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #0f766e;
+  font-weight: 700;
+}
+
+.brand-text {
+  display: block;
+  margin-top: 0.35rem;
+  font-size: 1.7rem;
+  font-weight: 650;
+  color: #134e4a;
+}
+
+.brand-sub {
+  margin: 0.4rem 0 0;
+  color: #5f7d79;
+  font-size: 0.95rem;
+}
+
+.login-form .field {
+  margin-bottom: 1.15rem;
+}
+
+.login-form label {
+  display: block;
+  margin-bottom: 0.4rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #3f6f6a;
+}
+
+.control-wrap {
+  position: relative;
+}
+
+.control-wrap .material-icons {
+  position: absolute;
+  left: 0.85rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 20px;
+  color: #0f766e;
+  pointer-events: none;
+  z-index: 1;
+}
+
+:host ::ng-deep .login-card input.control {
+  width: 100%;
+  box-sizing: border-box;
+  height: auto !important;
+  margin: 0 !important;
+  padding: 0.9rem 0.95rem 0.9rem 2.7rem !important;
+  font-size: 0.95rem;
+  border: 1px solid #cfe3df !important;
+  border-radius: 14px !important;
+  background: #f6fbfa !important;
+  color: #134e4a !important;
+  box-shadow: none !important;
+  outline: none;
+}
+
+:host ::ng-deep .login-card input.control::placeholder {
+  color: #8aa8a4;
+}
+
+:host ::ng-deep .login-card input.control:focus {
+  border-color: #0f766e !important;
+  background: #ffffff !important;
+  box-shadow: 0 0 0 4px rgba(15, 118, 110, 0.12) !important;
+}
+
+.btn-primary {
+  width: 100%;
+  margin-top: 0.7rem;
+  padding: 0.95rem 1rem;
+  font-size: 0.98rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  border: none;
+  border-radius: 14px;
+  cursor: pointer;
+  color: #ffffff;
+  background: linear-gradient(90deg, #0f766e, #14b8a6);
+  box-shadow: 0 12px 24px rgba(15, 118, 110, 0.28);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.btn-primary:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.btn-primary:not(:disabled):hover {
+  transform: translateY(-1px);
+  box-shadow: 0 16px 28px rgba(15, 118, 110, 0.32);
+}
+
+.sede-modal-content {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.sede-modal-subtitle {
+  margin: 0 0 6px 0;
+  color: #3f6f6a;
+}
+
+.sede-confirm-btn {
+  width: auto;
+  min-width: 140px;
+  margin-top: 0;
+}
+
+:host ::ng-deep .sede-login-dialog .p-dialog-header {
+  border-bottom: 1px solid #d7ebe7;
+  color: #134e4a;
+}
+
+:host ::ng-deep .sede-login-dialog .p-dialog-footer {
+  border-top: 1px solid #d7ebe7;
+}
+
+:host ::ng-deep .sede-login-dialog .control {
+  background: #ffffff;
+  color: #134e4a;
+  border: 1px solid #cfe3df;
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  -webkit-appearance: auto;
+  appearance: auto;
+  border-radius: 12px;
+  padding: 0.7rem 0.8rem;
+}
+
+:host ::ng-deep .sede-login-dialog .control:focus {
+  border-color: #0f766e;
+  background: #ffffff;
+}
+
+:host ::ng-deep .sede-login-dialog select.control option {
+  color: #134e4a;
+}
+
+@media (max-width: 860px) {
+  .login-shell {
+    grid-template-columns: 1fr;
+  }
+
+  .login-hero {
+    padding: 1.8rem 1.5rem 1.4rem;
+  }
+
+  .login-hero h2 {
+    font-size: 1.55rem;
+  }
+
+  .hero-copy,
+  .hero-points {
+    display: none;
+  }
+
+  .login-card {
+    padding: 1.6rem 1.3rem 1.8rem;
+  }
+}

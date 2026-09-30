@@ -1,0 +1,9 @@
+CREATE PROCEDURE [dbo].[MC_DELETE_ROL]
+    @IdRol INT
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    DELETE FROM dbo.Roles
+    WHERE IdRol = @IdRol;
+END

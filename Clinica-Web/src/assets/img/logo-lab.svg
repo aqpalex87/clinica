@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 72" fill="none">
+  <rect x="2" y="8" width="56" height="56" rx="16" fill="#14b8a6"/>
+  <path d="M30 20v14.2c0 1.2-.5 2.3-1.4 3.1L22 43.2A8 8 0 0 0 30 56h0a8 8 0 0 0 8-8.8l-6.6-6c-.9-.8-1.4-1.9-1.4-3.1V20" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M26 20h8M24.5 36.5h11" stroke="#fff" stroke-width="2.4" stroke-linecap="round"/>
+  <circle cx="30" cy="48.5" r="2.2" fill="#ecfeff"/>
+  <text x="72" y="34" fill="#F4FFFC" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="20" font-weight="700">Laboratorio</text>
+  <text x="72" y="54" fill="#99F6E4" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="13" font-weight="500" letter-spacing="1.4">CLÍNICO</text>
+</svg>

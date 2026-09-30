@@ -1,0 +1,12 @@
+C:\Alex\Alex\Colegio\JengiSchool\MC.Control\bin\Debug\net5.0\MC.Control.deps.json
+C:\Alex\Alex\Colegio\JengiSchool\MC.Control\bin\Debug\net5.0\MC.Control.dll
+C:\Alex\Alex\Colegio\JengiSchool\MC.Control\bin\Debug\net5.0\MC.Control.pdb
+C:\Alex\Alex\Colegio\JengiSchool\MC.Control\obj\Debug\net5.0\MC.Control.GeneratedMSBuildEditorConfig.editorconfig
+C:\Alex\Alex\Colegio\JengiSchool\MC.Control\obj\Debug\net5.0\MC.Control.AssemblyInfoInputs.cache
+C:\Alex\Alex\Colegio\JengiSchool\MC.Control\obj\Debug\net5.0\MC.Control.AssemblyInfo.cs
+C:\Alex\Alex\Colegio\JengiSchool\MC.Control\obj\Debug\net5.0\MC.Control.csproj.CoreCompileInputs.cache
+C:\Alex\Alex\Colegio\JengiSchool\MC.Control\obj\Debug\net5.0\MC.Control.dll
+C:\Alex\Alex\Colegio\JengiSchool\MC.Control\obj\Debug\net5.0\ref\MC.Control.dll
+C:\Alex\Alex\Colegio\JengiSchool\MC.Control\obj\Debug\net5.0\MC.Control.pdb
+C:\Alex\Alex\Colegio\JengiSchool\MC.Control\bin\Debug\net5.0\ref\MC.Control.dll
+C:\Alex\Alex\Colegio\JengiSchool\MC.Control\obj\Debug\net5.0\MC.Control.csprojAssemblyReference.cache

@@ -1,0 +1,72 @@
+{
+  "mesAnioFlujoCaja" : "DIC - 22",
+  "itemsGUF" : [
+    {
+      "id": 1,
+      "descripcion": "Canasta Básica (Alimentación)",
+      "montoMesAnioActual": 0,
+      "montoMesAnioFlujoCaja": 0
+    },
+    {
+      "id": 2,
+      "descripcion": "Educación",
+      "montoMesAnioActual": 0,
+      "montoMesAnioFlujoCaja": 500
+    },
+    {
+      "id": 3,
+      "descripcion": "Transporte",
+      "montoMesAnioActual": 0,
+      "montoMesAnioFlujoCaja": 0
+    },
+    {
+      "id": 4,
+      "descripcion": "Agua",
+      "montoMesAnioActual": 0,
+      "montoMesAnioFlujoCaja": 50
+    },
+    {
+        "id": 5,
+        "descripcion": "Luz",
+        "montoMesAnioActual": 0,
+        "montoMesAnioFlujoCaja": 100
+    },
+    {
+      "id": 6,
+      "descripcion": "Teléfono Fijo",
+      "montoMesAnioActual": 0,
+      "montoMesAnioFlujoCaja": 0
+    },
+    {
+      "id": 6,
+      "descripcion": "Teléfono Celular",
+      "montoMesAnioActual": 0,
+      "montoMesAnioFlujoCaja": 0
+    },
+    {
+      "id":8,
+      "descripcion": "Combustible",
+      "montoMesAnioActual": 0,
+      "montoMesAnioFlujoCaja": 100
+    },
+    {
+      "id": 9,
+      "descripcion": "Cable TV",
+      "montoMesAnioActual": 0,
+      "montoMesAnioFlujoCaja": 0
+    },
+    {
+      "id": 10,
+      "descripcion": "Otros",
+      "montoMesAnioActual": 0,
+      "montoMesAnioFlujoCaja": 0
+    },
+    {
+      "id": 11,
+      "descripcion": "Créditos Hipotecarioss",
+      "montoMesAnioActual": 0,
+      "montoMesAnioFlujoCaja": 0
+    }
+  ]
+}
+

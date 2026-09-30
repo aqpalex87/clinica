@@ -1,0 +1,133 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Agrobanco.MC.API</name>
+    </assembly>
+    <members>
+        <member name="M:Agrobanco.MC.API.Controllers.AccessController.GenerarToken(Agrobanco.MC.API.Models.AuthAccessRequest)">
+            <summary>
+            Método para autenticar al usuario y generar token de sesión
+            </summary>
+            <param name="appkey">AppKey de aplicación</param>
+            <param name="appcode">AppCode de aplicación</param>
+            <param name="access">Objeto con correo, nombre y codigo del usuario</param>
+            <response code="200">Ok - Retorna objeto con los datos del token</response> 
+            <response code="400">Bad Request - Solicitud Errada o contenido incorrecto</response> 
+            <response code="500">Server Error - Errores no controlados</response>  
+            <response code="502">Bad Gateway - Servidor remoto sin conexión o no disponible</response>  
+        </member>
+        <member name="M:Agrobanco.MC.API.Controllers.FlujoCajaController.GuardarFlujoCaja(Agrobanco.MC.DTO.Dtos.FlujoCajaMasterRequestDto)">
+            <summary>
+            Guarda un Flujo de Caja.
+            </summary>
+        </member>
+        <member name="M:Agrobanco.MC.API.Controllers.FlujoCajaController.EditarFlujoCaja(Agrobanco.MC.DTO.Dtos.FlujoCajaMasterRequestDto)">
+            <summary>
+            Edita un Flujo de Caja cuyo estado es Pendiente u Observado.
+            </summary>
+        </member>
+        <member name="M:Agrobanco.MC.API.Controllers.FlujoCajaController.GetFlujoCaja(System.Int32,System.String,System.Decimal,System.String)">
+            <summary>
+            Obtiene un Flujo de Caja por el identificador.
+            </summary>
+        </member>
+        <member name="M:Agrobanco.MC.API.Controllers.FlujoCajaController.FinalizarFlujoCaja(System.Int32)">
+            <summary>
+            Finaliza un Flujo de Caja cuyo estado es Pendiente u Observado.
+            </summary>
+        </member>
+        <member name="M:Agrobanco.MC.API.Controllers.FlujoCajaController.SaveCommnetReviFlujoCaja(System.Int32,Agrobanco.MC.DTO.Dtos.FlujoCajaRevisionDto)">
+            <summary>
+            Registra la observacion de revisión de un Flujo de Caja cuyo estado es Finalizado.
+            </summary>
+        </member>
+        <member name="M:Agrobanco.MC.API.Controllers.FlujoCajaController.ObtenerFlujosCaja(Agrobanco.MC.DTO.Dtos.FilterFlujoCajaDto)">
+            <summary>
+            Obtener flujos de caja por filtro
+            </summary>
+            <param name="filtro"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Agrobanco.MC.API.Controllers.HojaProductoController.Get(System.String)">
+            <summary>
+            Obtiene las hojas de producto según el código de ubigeo de departamento de la SC.
+            </summary>
+        </member>
+        <member name="M:Agrobanco.MC.API.Controllers.HojaProductoController.DownloadFile(System.Int32)">
+            <summary>
+            Permite la descarga de un archivo desde el repositorio de Laserfiche
+            </summary>
+        </member>
+        <member name="M:Agrobanco.MC.API.Controllers.ParametroVersionController.ObtenerParametrosVersion">
+            <summary>
+            Obtiene todos los parámetros versión
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Agrobanco.MC.API.Controllers.ParametroVersionController.ObtenerParametroVersionPorCodigo(System.String)">
+            <summary>
+            Obtiene el párámetro versión y sus detalles por el código 
+            </summary>
+            <param name="codigoVersion"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Agrobanco.MC.API.Controllers.ParametroVersionController.GuardarParametroVersion(Agrobanco.MC.DTO.Dtos.ParametroVersionDto)">
+            <summary>
+            Guarda el parámetro versión y sus detalles
+            </summary>
+            <param name="parametroVersionDto"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Agrobanco.MC.API.Controllers.ParametroVersionController.ActualizarEstadoParametroVersion(System.String,System.String)">
+            <summary>
+            Actualiza el parámetro versión a un estado determinado
+            </summary>
+            <param name="codigoVersion"></param>
+            <param name="estado"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Agrobanco.MC.API.Controllers.ParametroVersionController.ObtenerNuevoCodigoVersion">
+            <summary>
+            Obtiene el código de parámetro versión disponible y el código parámetro versión activo
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Agrobanco.MC.API.Controllers.ParametroVersionController.ObtenerParametroVersionActivo(System.Int32)">
+            <summary>
+            Retorna los parametros activos del FC.
+            </summary>
+        </member>
+        <member name="M:Agrobanco.MC.API.Controllers.ReportesController.GetReporteFlujoCaja(System.Decimal)">
+            <summary>
+            Obtiene reporte Flujo de Caja por filtros.
+            </summary>
+        </member>
+        <member name="M:Agrobanco.MC.API.Controllers.SolicitudCreditoController.ObtenerSolicitudesCredito(Agrobanco.MC.DTO.Dtos.FilterSolicitudCreditoDto)">
+            <summary>
+            Obtene una lista de Solicitudes de Crédito en base a los filtros de Id FC, N° Solicitud, N° Documento y nombres
+            </summary>
+            <param name="solicitud"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Agrobanco.MC.API.Controllers.SolicitudCreditoController.GetByNum(Agrobanco.MC.DTO.Dtos.FilterSolicitudCreditoDto,System.String)">
+            <summary>
+            Obtiene una Solicitud de Crédito por el número y el N° de documento
+            </summary>
+        </member>
+        <member name="M:Agrobanco.MC.API.Utils.PdfCellFactory.Get(System.String)">
+            <summary>
+            Obtiene una instancia de PdfPCell con la alineación vertical centrada.
+            </summary>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Agrobanco.MC.API.Utils.PdfCellFactory.Get(System.String,iTextSharp.text.Font)">
+            <summary>
+            Obtiene una instancia de PdfPCell con la alineación vertical centrada.
+            </summary>
+            <param name="value">Valor de la Celda</param>
+            <param name="font">Fuente del Texto</param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

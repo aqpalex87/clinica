@@ -1,0 +1,10 @@
+CREATE OR ALTER PROCEDURE [dbo].[MC_DELETE_MENU]
+    @P_IDMENU INT
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    UPDATE dbo.Menus
+    SET Activo = 0
+    WHERE IdMenu = @P_IDMENU;
+END

@@ -1,0 +1,145 @@
+<div class="section no-padding">
+  <div class="row col s12 no-mar-bot">
+    <div class="section no-mar-bot">
+      <div class="col s12 m12 l12 menu-header">
+        <h1 class="title">Mantenimiento de Menús</h1>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="menu-toolbar">
+  <div class="search-wrap">
+    <i class="pi pi-search"></i>
+    <input
+      pInputText
+      type="text"
+      [(ngModel)]="busqueda"
+      placeholder="Buscar por nombre"
+      (keyup.enter)="buscar()"
+    />
+    <button
+      pButton
+      type="button"
+      icon="pi pi-search"
+      label="Buscar"
+    class="btn-search"
+      (click)="buscar()"
+    ></button>
+    <button pButton type="button" icon="pi pi-times" class="btn-plantilla-clear" (click)="limpiarBusqueda()"></button>
+  </div>
+  <button pButton type="button" label="Agregar" icon="pi pi-plus" class="btn-add" (click)="abrirNuevo()"></button>
+</div>
+
+<p-table
+  [value]="menus"
+  styleClass="p-datatable-sm p-datatable-gridlines menu-table"
+  [paginator]="true"
+  [rows]="rows"
+  [totalRecords]="totalRows"
+  [lazy]="true"
+  [loading]="loading"
+  [rowsPerPageOptions]="[10, 20, 50]"
+  [showCurrentPageReport]="true"
+  currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords}"
+  (onLazyLoad)="onLazyLoad($event)"
+>
+  <ng-template pTemplate="header">
+    <tr>
+      <th>ID</th>
+      <th>Nombre</th>
+      <th>Ruta</th>
+      <th>Icono</th>
+      <th>Padre</th>
+      <th>Orden</th>
+      <th>Estado</th>
+      <th class="text-center">Opciones</th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-item>
+    <tr>
+      <td>{{ item.idMenu }}</td>
+      <td>{{ item.nombre }}</td>
+      <td>{{ item.ruta || '-' }}</td>
+      <td>{{ item.icono || '-' }}</td>
+      <td>{{ item.nombrePadre || '-' }}</td>
+      <td>{{ item.orden ?? '-' }}</td>
+      <td>
+        <span class="status-badge" [ngClass]="item.activo ? 'active' : 'inactive'">
+          {{ item.activo ? 'Activo' : 'Inactivo' }}
+        </span>
+      </td>
+      <td class="text-center actions">
+        <button pButton type="button" icon="pi pi-pencil" class="btn-action edit" (click)="editar(item)" pTooltip="Editar"></button>
+        <button pButton type="button" icon="pi pi-trash" class="btn-action delete" (click)="eliminar(item)" pTooltip="Eliminar"></button>
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="emptymessage">
+    <tr>
+      <td colspan="8">No hay registros para mostrar.</td>
+    </tr>
+  </ng-template>
+</p-table>
+
+<p-dialog
+  [(visible)]="modalVisible"
+  [modal]="true"
+  [closable]="true"
+  [draggable]="false"
+  [resizable]="false"
+  [style]="{ width: '40rem' }"
+  styleClass="menu-dialog"
+>
+  <ng-template pTemplate="header">
+    <div class="dialog-header-title">
+      <span class="dialog-header-accent"></span>
+      <span>{{ editando ? 'Editar menú' : 'Agregar menú' }}</span>
+    </div>
+  </ng-template>
+
+  <form [formGroup]="form" class="menu-form">
+    <div class="field">
+      <label>Nombre *</label>
+      <input pInputText type="text" formControlName="nombre" />
+    </div>
+
+    <div class="field-row">
+      <div class="field">
+        <label>Ruta</label>
+        <input pInputText type="text" formControlName="ruta" />
+      </div>
+      <div class="field">
+        <label>Icono</label>
+        <input pInputText type="text" formControlName="icono" />
+      </div>
+    </div>
+
+    <div class="field-row">
+      <div class="field">
+        <label>Menú padre</label>
+        <p-dropdown
+          [options]="opcionesPadre()"
+          optionLabel="label"
+          optionValue="value"
+          formControlName="idPadre"
+          appendTo="body"
+        ></p-dropdown>
+      </div>
+      <div class="field">
+        <label>Orden</label>
+        <p-inputNumber formControlName="orden" [useGrouping]="false"></p-inputNumber>
+      </div>
+    </div>
+
+    <div class="field checkbox-field">
+      <p-checkbox [binary]="true" formControlName="activo"></p-checkbox>
+      <label>Activo</label>
+    </div>
+  </form>
+
+  <ng-template pTemplate="footer">
+    <button pButton type="button" label="Cancelar" icon="pi pi-times" class="btn-plantilla-clear" (click)="modalVisible = false"></button>
+    <button pButton type="button" label="Guardar" icon="pi pi-save" class="btn-save" (click)="guardar()"></button>
+  </ng-template>
+</p-dialog>

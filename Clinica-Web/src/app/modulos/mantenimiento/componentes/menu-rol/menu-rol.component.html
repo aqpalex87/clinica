@@ -1,0 +1,52 @@
+<div class="section no-padding">
+  <div class="row col s12 no-mar-bot">
+    <div class="section no-mar-bot">
+      <div class="col s12 m12 l12 menu-rol-header">
+        <h1 class="title">Mantenimiento de Menu-Roles</h1>
+        <p class="subtitle">Empresa sesión: {{ empresaNombre }}</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="menu-rol-toolbar">
+  <div class="selectors-wrap">
+    <div class="field-inline">
+      <label>Empresa</label>
+      <select class="plantilla-select browser-default" [(ngModel)]="idEmpresa" (change)="onEmpresaChange()">
+        <option [ngValue]="null">Seleccione empresa</option>
+        <option *ngFor="let e of empresas" [ngValue]="e.idEmpresa">{{ e.nombre }}</option>
+      </select>
+    </div>
+
+    <div class="field-inline">
+      <label>Rol</label>
+      <select class="plantilla-select browser-default" [(ngModel)]="idRol" (change)="onRolChange()" [disabled]="!idEmpresa || roles.length === 0">
+        <option [ngValue]="null">Seleccione rol</option>
+        <option *ngFor="let r of roles" [ngValue]="r.idRol">{{ r.nombre }}</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="actions-wrap">
+    <button pButton type="button" icon="pi pi-plus" label="Expandir" class="btn-search" (click)="expandAll()" [disabled]="!menuTree.length"></button>
+    <button pButton type="button" icon="pi pi-minus" label="Contraer" class="btn-plantilla-clear" (click)="collapseAll()" [disabled]="!menuTree.length"></button>
+    <button pButton type="button" icon="pi pi-save" label="Guardar" class="btn-save" (click)="guardar()" [disabled]="!idRol || guardando"></button>
+  </div>
+</div>
+
+<div class="tree-card">
+  <p-tree
+    [value]="menuTree"
+    selectionMode="checkbox"
+    [(selection)]="selectedNodes"
+    [loading]="loadingTree"
+    [propagateSelectionUp]="true"
+    [propagateSelectionDown]="true"
+    styleClass="menu-rol-tree"
+  ></p-tree>
+
+  <div class="empty-message" *ngIf="!loadingTree && (!idRol || menuTree.length === 0)">
+    Seleccione empresa y rol para gestionar los menús.
+  </div>
+</div>

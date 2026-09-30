@@ -1,0 +1,77 @@
+.rol-header {
+  background: #ffffff;
+  border: 1px solid #e6eaf0;
+  border-left: 5px solid #00694f;
+  border-radius: 8px;
+  padding: 10px 14px;
+  margin-bottom: 10px;
+}
+
+.rol-header .title { margin: 0; color: #1f2937; font-size: 22px; font-weight: 700; }
+.rol-header .subtitle { margin: 4px 0 0; color: #475569; font-size: 12px; }
+
+.rol-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 14px;
+  background: #ffffff;
+  border: 1px solid #e6eaf0;
+  border-radius: 8px;
+  padding: 10px 12px;
+}
+
+.search-wrap { display: flex; align-items: center; gap: 8px; width: 100%; max-width: 740px; }
+.search-wrap i { color: #9ca3af; }
+.search-wrap input { width: 100%; flex: 1 1 auto; min-width: 220px; }
+
+.empresa-filter-select {
+  min-width: 190px;
+  height: 36px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  padding: 0 10px;
+  background: #fff;
+  color: #334155;
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  -webkit-appearance: auto;
+  appearance: auto;
+}
+
+::ng-deep .p-dialog .empresa-modal-select {
+  width: 100%;
+}
+
+::ng-deep .p-dialog .empresa-modal-select option {
+  color: #1f2937;
+}
+
+.rol-table { border-radius: 10px; overflow: hidden; border: 1px solid #e6eaf0; }
+.actions { display: flex; justify-content: center; gap: 8px; }
+
+.btn-action { width: 2rem !important; height: 2rem !important; border: 0 !important; }
+.btn-action.edit { background: #f59e0b !important; }
+.btn-action.delete { background: #dc2626 !important; }
+
+.status-badge { padding: 3px 10px; border-radius: 20px; font-size: 12px; font-weight: 600; }
+.status-badge.active { background: rgba(22, 163, 74, 0.15); color: #16a34a; }
+.status-badge.inactive { background: rgba(239, 68, 68, 0.15); color: #ef4444; }
+
+.rol-form { display: flex; flex-direction: column; gap: 14px; padding-top: 4px; }
+.field { display: flex; flex-direction: column; gap: 7px; }
+.field label { color: #5b6472; font-size: 12px; font-weight: 600; }
+.checkbox-field { flex-direction: row; align-items: center; margin-top: 4px; }
+
+.btn-add { background: #00694f !important; color: #ffffff !important; border: 0 !important; }
+.btn-search { background: #0ea5e9 !important; color: #ffffff !important; border: 0 !important; min-width: 96px !important; }
+.btn-save { background: #2563eb !important; color: #ffffff !important; border: 0 !important; }
+.btn-clear { background: #64748b !important; color: #ffffff !important; border: 1px solid #cbd5e1 !important; }
+
+@media (max-width: 768px) {
+  .rol-toolbar { flex-direction: column; align-items: stretch; }
+  .search-wrap { max-width: 100%; }
+  .empresa-filter-select { width: 100%; }
+}

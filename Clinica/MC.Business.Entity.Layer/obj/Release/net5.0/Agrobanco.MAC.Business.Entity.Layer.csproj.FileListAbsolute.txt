@@ -1,0 +1,12 @@
+C:\Users\boeni\Documentos\WORKSPACE-CANVIA\REQ011\2024\Fuentes\Analisis-cuantitativo-011\Agrobanco.MC\Agrobanco.MC.Business.Entity.Layer\bin\Release\net5.0\Agrobanco.MC.Business.Entity.Layer.deps.json
+C:\Users\boeni\Documentos\WORKSPACE-CANVIA\REQ011\2024\Fuentes\Analisis-cuantitativo-011\Agrobanco.MC\Agrobanco.MC.Business.Entity.Layer\bin\Release\net5.0\Agrobanco.MC.Business.Entity.Layer.dll
+C:\Users\boeni\Documentos\WORKSPACE-CANVIA\REQ011\2024\Fuentes\Analisis-cuantitativo-011\Agrobanco.MC\Agrobanco.MC.Business.Entity.Layer\bin\Release\net5.0\ref\Agrobanco.MC.Business.Entity.Layer.dll
+C:\Users\boeni\Documentos\WORKSPACE-CANVIA\REQ011\2024\Fuentes\Analisis-cuantitativo-011\Agrobanco.MC\Agrobanco.MC.Business.Entity.Layer\bin\Release\net5.0\Agrobanco.MC.Business.Entity.Layer.pdb
+C:\Users\boeni\Documentos\WORKSPACE-CANVIA\REQ011\2024\Fuentes\Analisis-cuantitativo-011\Agrobanco.MC\Agrobanco.MC.Business.Entity.Layer\obj\Release\net5.0\Agrobanco.MC.Business.Entity.Layer.csproj.AssemblyReference.cache
+C:\Users\boeni\Documentos\WORKSPACE-CANVIA\REQ011\2024\Fuentes\Analisis-cuantitativo-011\Agrobanco.MC\Agrobanco.MC.Business.Entity.Layer\obj\Release\net5.0\Agrobanco.MC.Business.Entity.Layer.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\boeni\Documentos\WORKSPACE-CANVIA\REQ011\2024\Fuentes\Analisis-cuantitativo-011\Agrobanco.MC\Agrobanco.MC.Business.Entity.Layer\obj\Release\net5.0\Agrobanco.MC.Business.Entity.Layer.AssemblyInfoInputs.cache
+C:\Users\boeni\Documentos\WORKSPACE-CANVIA\REQ011\2024\Fuentes\Analisis-cuantitativo-011\Agrobanco.MC\Agrobanco.MC.Business.Entity.Layer\obj\Release\net5.0\Agrobanco.MC.Business.Entity.Layer.AssemblyInfo.cs
+C:\Users\boeni\Documentos\WORKSPACE-CANVIA\REQ011\2024\Fuentes\Analisis-cuantitativo-011\Agrobanco.MC\Agrobanco.MC.Business.Entity.Layer\obj\Release\net5.0\Agrobanco.MC.Business.Entity.Layer.csproj.CoreCompileInputs.cache
+C:\Users\boeni\Documentos\WORKSPACE-CANVIA\REQ011\2024\Fuentes\Analisis-cuantitativo-011\Agrobanco.MC\Agrobanco.MC.Business.Entity.Layer\obj\Release\net5.0\Agrobanco.MC.Business.Entity.Layer.dll
+C:\Users\boeni\Documentos\WORKSPACE-CANVIA\REQ011\2024\Fuentes\Analisis-cuantitativo-011\Agrobanco.MC\Agrobanco.MC.Business.Entity.Layer\obj\Release\net5.0\ref\Agrobanco.MC.Business.Entity.Layer.dll
+C:\Users\boeni\Documentos\WORKSPACE-CANVIA\REQ011\2024\Fuentes\Analisis-cuantitativo-011\Agrobanco.MC\Agrobanco.MC.Business.Entity.Layer\obj\Release\net5.0\Agrobanco.MC.Business.Entity.Layer.pdb

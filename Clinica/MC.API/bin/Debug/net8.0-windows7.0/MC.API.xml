@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>MC.API</name>
+    </assembly>
+    <members>
+        <member name="M:MC.API.Controllers.AccessController.GenerarToken(MC.API.Models.AuthAccessRequest)">
+            <summary>
+            Método para autenticar al usuario y generar token de sesión
+            </summary>
+            <param name="appkey">AppKey de aplicación</param>
+            <param name="appcode">AppCode de aplicación</param>
+            <param name="access">Objeto con correo, nombre y codigo del usuario</param>
+            <response code="200">Ok - Retorna objeto con los datos del token</response> 
+            <response code="400">Bad Request - Solicitud Errada o contenido incorrecto</response> 
+            <response code="500">Server Error - Errores no controlados</response>  
+            <response code="502">Bad Gateway - Servidor remoto sin conexión o no disponible</response>  
+        </member>
+    </members>
+</doc>

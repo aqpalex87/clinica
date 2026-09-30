@@ -1,0 +1,13 @@
+.custom-checkbox .ui-chkbox-box.ui-state-disabled {
+  background-color: #c91111; /* Change this to the desired background color */
+  border-color: #c41414; /* Change this to the desired border color */
+  opacity: 0.5; /* Adjust the opacity as per your preference */
+}
+
+.btn-nuevo {
+  font-family: "Ubuntu";
+  margin-top: 15px;
+  font-weight: 600;
+  background-color: #00694f;
+  color: #ffd204;
+}

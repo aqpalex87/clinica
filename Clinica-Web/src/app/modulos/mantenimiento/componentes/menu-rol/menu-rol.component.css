@@ -1,0 +1,130 @@
+.menu-rol-header {
+  background: #ffffff;
+  border: 1px solid #e6eaf0;
+  border-left: 5px solid #00694f;
+  border-radius: 8px;
+  padding: 10px 14px;
+  margin-bottom: 10px;
+  box-shadow: 0 2px 8px rgba(31, 45, 61, 0.06);
+}
+
+.menu-rol-header .title {
+  margin: 0;
+  color: #1f2937;
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.menu-rol-header .subtitle {
+  margin: 4px 0 0;
+  color: #475569;
+  font-size: 12px;
+}
+
+.menu-rol-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 12px;
+  margin-bottom: 14px;
+  background: #ffffff;
+  border: 1px solid #e6eaf0;
+  border-radius: 8px;
+  padding: 10px 12px;
+}
+
+.selectors-wrap {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.field-inline {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.field-inline label {
+  color: #5b6472;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.plantilla-select {
+  min-width: 240px;
+  height: 36px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  padding: 0 10px;
+  background: #fff;
+  color: #334155;
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  -webkit-appearance: auto;
+  appearance: auto;
+}
+
+.actions-wrap {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.tree-card {
+  background: #ffffff;
+  border: 1px solid #e6eaf0;
+  border-radius: 10px;
+  padding: 12px;
+  min-height: 420px;
+}
+
+::ng-deep .menu-rol-tree {
+  border: 0 !important;
+}
+
+::ng-deep .menu-rol-tree .p-treenode-label {
+  color: #1f2937;
+}
+
+.empty-message {
+  margin-top: 12px;
+  color: #64748b;
+  font-size: 13px;
+}
+
+.btn-search {
+  background: #0ea5e9 !important;
+  color: #ffffff !important;
+  border: 0 !important;
+}
+
+.btn-save {
+  background: #2563eb !important;
+  color: #ffffff !important;
+  border: 0 !important;
+}
+
+.btn-plantilla-clear {
+  background: #64748b !important;
+  border: 1px solid #cbd5e1 !important;
+  color: #ffffff !important;
+}
+
+@media (max-width: 768px) {
+  .menu-rol-toolbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .selectors-wrap,
+  .actions-wrap {
+    width: 100%;
+  }
+
+  .plantilla-select {
+    width: 100%;
+    min-width: 0;
+  }
+}

@@ -1,0 +1,11 @@
+CREATE PROCEDURE [dbo].[MC_SELECT_ROL_POR_USUARIO]
+    @P_USUARIO VARCHAR(50)
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    SELECT TOP 1 u.IdRol
+    FROM dbo.Usuarios u
+    WHERE u.Usuario = @P_USUARIO
+      AND u.Activo = 1;
+END

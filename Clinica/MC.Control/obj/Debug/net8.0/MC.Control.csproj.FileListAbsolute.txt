@@ -1,0 +1,12 @@
+C:\Alex\Alex\Clinica\Clinica\MC.Control\bin\Debug\net8.0\MC.Control.deps.json
+C:\Alex\Alex\Clinica\Clinica\MC.Control\bin\Debug\net8.0\MC.Control.dll
+C:\Alex\Alex\Clinica\Clinica\MC.Control\bin\Debug\net8.0\MC.Control.pdb
+C:\Alex\Alex\Clinica\Clinica\MC.Control\obj\Debug\net8.0\MC.Control.csproj.AssemblyReference.cache
+C:\Alex\Alex\Clinica\Clinica\MC.Control\obj\Debug\net8.0\MC.Control.GeneratedMSBuildEditorConfig.editorconfig
+C:\Alex\Alex\Clinica\Clinica\MC.Control\obj\Debug\net8.0\MC.Control.AssemblyInfoInputs.cache
+C:\Alex\Alex\Clinica\Clinica\MC.Control\obj\Debug\net8.0\MC.Control.AssemblyInfo.cs
+C:\Alex\Alex\Clinica\Clinica\MC.Control\obj\Debug\net8.0\MC.Control.csproj.CoreCompileInputs.cache
+C:\Alex\Alex\Clinica\Clinica\MC.Control\obj\Debug\net8.0\MC.Control.dll
+C:\Alex\Alex\Clinica\Clinica\MC.Control\obj\Debug\net8.0\refint\MC.Control.dll
+C:\Alex\Alex\Clinica\Clinica\MC.Control\obj\Debug\net8.0\MC.Control.pdb
+C:\Alex\Alex\Clinica\Clinica\MC.Control\obj\Debug\net8.0\ref\MC.Control.dll

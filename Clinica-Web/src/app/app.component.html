@@ -1,0 +1,29 @@
+<div *ngIf="isSession != ''">
+  <div class="container-body" >
+    <!-- * * * * * * * * * * *inicio sidebar * * * * * * * * * * -->
+    <app-sidebar></app-sidebar>
+    <!-- * * * * * * * * * * * fin sidebar * * * * * * * * * * * -->
+
+    <!-- * * * * * * * * * * * inicio navbar * * * * * * * * * * -->
+    <app-navbar></app-navbar>
+    <!-- * * * * * * * * * * * fin navbar * * * * * * * * * * * *-->
+    <app-loading></app-loading>
+   <div class="container-detail layout-card-gray-1 no-pad-top">
+     <router-outlet></router-outlet>
+   </div>
+   <footer class="app-footer">
+     <div class="app-footer-brand">
+       <strong>Laboratorio clínico</strong>
+       <span>Gestión de muestras, usuarios y sedes</span>
+     </div>
+     <p class="app-footer-copy">© {{ anio }} Laboratorio clínico. Todos los derechos reservados.</p>
+   </footer>
+
+  </div>
+  <!-- <div class="sidenav-overlay" style="display: block;" (click)="hideSideBar()"></div> -->
+</div>
+<div *ngIf="isSession == ''">
+  <router-outlet></router-outlet>
+</div>
+
+

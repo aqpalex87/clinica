@@ -1,0 +1,237 @@
+.a-hover:hover{
+    text-decoration: underline;
+}
+
+#slide-out.sidenav {
+    width: 290px;
+    background: linear-gradient(180deg, #0f766e 0%, #115e59 48%, #134e4a 100%) !important;
+    color: #f4fffc;
+    border: none !important;
+    box-shadow: 8px 0 24px rgba(15, 78, 74, 0.12);
+}
+
+body.menu-open #slide-out.sidenav {
+    width: 290px;
+}
+
+#slide-out .divider {
+    background-color: rgba(255, 255, 255, 0.16);
+    margin: 0 16px 8px;
+}
+
+#slide-out .sidebar-brand.user-view {
+    height: auto !important;
+    min-height: 0 !important;
+    overflow: visible !important;
+    padding: 16px 12px 12px 14px !important;
+    margin-bottom: 6px !important;
+}
+
+.brand-lockup {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start !important;
+    gap: 8px;
+    width: 100%;
+}
+
+.brand-mark {
+    width: 46px;
+    height: 46px;
+    flex: 0 0 46px;
+    display: block;
+}
+
+.brand-mark svg {
+    width: 46px;
+    height: 46px;
+    display: block;
+}
+
+.brand-copy {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex: 1 1 auto;
+    min-width: 0;
+    width: 100%;
+    container-type: inline-size;
+    line-height: 1;
+    text-align: left;
+}
+
+.brand-copy strong {
+    display: block;
+    width: 100%;
+    color: #ffffff;
+    font-size: 38px;
+    font-size: 19.2cqi;
+    font-weight: 700;
+    letter-spacing: 0.015em;
+    line-height: 1;
+    white-space: nowrap;
+}
+
+.brand-copy small {
+    display: block;
+    width: 100%;
+    margin-top: 5px;
+    color: #99f6e4;
+    font-size: 15px;
+    letter-spacing: 0;
+    text-align: right;
+    text-transform: uppercase;
+    font-weight: 700;
+    line-height: 1;
+}
+
+#slide-out .collapsible-header {
+    min-height: 44px;
+    line-height: 1.2;
+    background: transparent;
+    color: #ecfdf5;
+    border-bottom: none;
+    padding: 0 18px;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+#slide-out .collapsible-header div,
+#slide-out .collapsible-header .keyboard_arrow_down {
+    display: block;
+}
+
+#slide-out .collapsible-header .material-icons {
+    color: #99f6e4;
+    flex: 0 0 18px;
+    margin-top: 1px;
+}
+
+#slide-out .collapsible-header div {
+    white-space: normal;
+    word-break: break-word;
+    overflow-wrap: break-word;
+    flex: 1 1 0;
+    min-width: 0;
+    font-size: 12px;
+    line-height: 1.35;
+}
+
+#slide-out .collapsible-header:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+}
+
+#slide-out .collapsible-body {
+    border-bottom: none;
+    background: rgba(8, 60, 58, 0.28);
+    /* Anula padding de plantilla (p. ej. main.css 0 57px) que deja ~0px útiles al anidar otro collapsible */
+    padding: 10px 12px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    overflow: visible !important;
+}
+
+.single-menu-link {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 10px 18px;
+    color: #ecfdf5;
+    border-left: 3px solid transparent;
+    white-space: normal;
+    line-height: 1.35;
+    width: 100%;
+    box-sizing: border-box;
+    min-width: 0;
+    height: auto !important;
+}
+
+/* Materialize .sidenav li > a pone float en iconos y rompe el ancho del texto en submenús */
+#slide-out .single-menu-link > i.material-icons {
+    float: none !important;
+    flex: 0 0 22px;
+    width: 22px !important;
+    height: auto !important;
+    line-height: 1.35 !important;
+    margin: 0 !important;
+}
+
+.single-menu-link .material-icons {
+    font-size: 18px;
+    color: #99f6e4;
+    flex: 0 0 18px;
+    margin-top: 1px;
+}
+
+.single-menu-link span {
+    white-space: normal;
+    word-break: normal;
+    overflow-wrap: break-word;
+    flex: 1 1 0;
+    min-width: 0;
+}
+
+.single-menu-link:hover {
+    color: #ffffff;
+    border-left-color: #99f6e4;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.nested-menu {
+    margin: 0;
+    padding: 2px 0 4px 8px;
+    border-left: 1px solid rgba(255, 255, 255, 0.16);
+    box-shadow: none !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0;
+    box-sizing: border-box;
+}
+
+#slide-out .nested-menu > li {
+    width: 100% !important;
+    max-width: 100% !important;
+    float: none !important;
+    line-height: normal !important;
+    margin-bottom: 3px;
+}
+
+#slide-out .nested-menu > li:last-child {
+    margin-bottom: 0;
+}
+
+#slide-out .nested-menu .single-menu-link {
+    padding: 10px 12px;
+    line-height: 1.38;
+    gap: 10px;
+}
+
+#slide-out .nested-menu .collapsible-header {
+    padding: 10px 12px;
+    min-height: 44px;
+    font-size: 12px;
+    line-height: 1.38;
+}
+
+#slide-out .nested-menu .collapsible-body {
+    background: rgba(6, 46, 44, 0.35);
+    padding: 8px 10px 10px 10px !important;
+    margin-top: 2px;
+}
+
+#slide-out li.active > .collapsible-header,
+#slide-out li.active > .single-menu-link {
+    background: rgba(255, 255, 255, 0.16) !important;
+    color: #ffffff !important;
+}
+
+#slide-out li .collapsible-body {
+    background-color: rgba(8, 60, 58, 0.28) !important;
+    color: #ecfdf5 !important;
+}

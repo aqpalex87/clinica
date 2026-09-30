@@ -1,0 +1,120 @@
+{
+    "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+    "version": 1,
+    "newProjectRoot": "projects",
+    "projects": {
+        "MC.WEB": {
+            "projectType": "application",
+            "schematics": {},
+            "root": "",
+            "sourceRoot": "src",
+            "prefix": "app",
+            "architect": {
+                "build": {
+                    "builder": "@angular-devkit/build-angular:browser",
+                    "options": {
+                        "outputPath": "dist/MC.web",
+                        "index": "src/index.html",
+                        "main": "src/main.ts",
+                        "polyfills": "src/polyfills.ts",
+                        "tsConfig": "tsconfig.app.json",
+                        "assets": [
+                            "src/favicon.ico",
+                            "src/assets",
+                            "src/Web.config"
+                        ],
+                        "styles": [
+                            "src/assets/lib/materialize-css/css/materialize.css",
+                            "src/assets/material-icon/material-icons.css",
+                            "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
+                            "./node_modules/primeng/resources/themes/saga-blue/theme.css",
+                            "./node_modules/primeng/resources/primeng.min.css",
+                            "./node_modules/primeicons/primeicons.css",
+                            "./node_modules/primeflex/primeflex.css",
+                            "src/assets/css/main.css",
+                            "src/styles.css",
+                            "node_modules/ngx-toastr/toastr.css"
+                        ],
+                        "scripts": [
+                            "src/assets/lib/jquery/jquery-3.3.1.js",
+                            "src/assets/lib/materialize-css/js/materialize.js"
+                        ]
+                    },
+                    "configurations": {
+                        "production": {
+                            "budgets": [{
+                                    "type": "initial",
+                                    "maximumWarning": "2mb",
+                                    "maximumError": "5mb"
+                                },
+                                {
+                                    "type": "anyComponentStyle",
+                                    "maximumWarning": "2kb",
+                                    "maximumError": "4kb"
+                                }
+                            ],
+                            "fileReplacements": [{
+                                "replace": "src/environments/environment.ts",
+                                "with": "src/environments/environment.prod.ts"
+                            }],
+                            "outputHashing": "all"
+                        },
+                        "development": {
+                            "buildOptimizer": false,
+                            "optimization": false,
+                            "vendorChunk": true,
+                            "extractLicenses": false,
+                            "sourceMap": true,
+                            "namedChunks": true
+                        }
+                    },
+                    "defaultConfiguration": "production"
+                },
+                "serve": {
+                    "builder": "@angular-devkit/build-angular:dev-server",
+                    "configurations": {
+                        "production": {
+                            "browserTarget": "MC.WEB:build:production"
+                        },
+                        "development": {
+                            "browserTarget": "MC.WEB:build:development"
+                        }
+                    },
+                    "defaultConfiguration": "development"
+                },
+                "extract-i18n": {
+                    "builder": "@angular-devkit/build-angular:extract-i18n",
+                    "options": {
+                        "browserTarget": "MC.WEB:build"
+                    }
+                },
+                "test": {
+                    "builder": "@angular-devkit/build-angular:karma",
+                    "options": {
+                        "main": "src/test.ts",
+                        "polyfills": "src/polyfills.ts",
+                        "tsConfig": "tsconfig.spec.json",
+                        "karMConfig": "karma.conf.js",
+                        "assets": [
+                            "src/favicon.ico",
+                            "src/assets"
+                        ],
+                        "styles": [
+                            "./node_modules/@angular/material/prebuilt-themes/purple-green.css",
+                            "./node_modules/primeflex/primeflex.css",
+                            "src/assets/css/main.css",
+                            "src/styles.css"
+                        ],
+                        "scripts": []
+                    }
+                }
+            }
+        }
+    },
+    "cli": {
+        "analytics": false,
+        "cache": {
+            "enabled": false
+        }
+    }
+}

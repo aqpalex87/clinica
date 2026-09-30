@@ -1,0 +1,58 @@
+<nav class="nav-horizontal">
+  <div class="nav-wrapper">
+    <button id="menu-open" class="menu-open" type="button" (click)="MenuOpenClick()">
+      <i class="material-icons">menu</i>
+    </button>
+
+    <div class="navbar-title">
+      Bienvenido(a) {{ nombreUsuario }} al Sistema
+    </div>
+
+    <div class="navbar-meta">
+      <div class="meta-block">
+        <span class="meta-label">Usuario</span>
+        <span class="meta-value">{{ usuario }}</span>
+      </div>
+      <div class="meta-block">
+        <span class="meta-label">Perfil</span>
+        <span class="meta-value">{{ perfil }}</span>
+      </div>
+      <div class="meta-block hide-on-small-only">
+        <span class="meta-label">Empresa</span>
+        <span class="meta-value">{{ empresa || '-' }}</span>
+      </div>
+      <div class="meta-block hide-on-small-only">
+        <span class="meta-label">Sede</span>
+        <span class="meta-value">{{ sede || '-' }}</span>
+      </div>
+      <div class="meta-block hide-on-small-only">
+        <span class="meta-label">Conexion</span>
+        <span class="meta-value">{{ fechaAcceso | date:'dd/MM/yyyy h:mm:ss a' }}</span>
+      </div>
+
+      <div class="user-menu">
+        <button type="button" class="user-menu-trigger" (click)="toggleMenuUsuario()">
+          <i class="material-icons">account_circle</i>
+          <span>{{ usuario || 'Usuario' }}</span>
+          <i class="material-icons arrow">expand_more</i>
+        </button>
+
+        <div class="user-menu-dropdown" *ngIf="menuUsuarioAbierto">
+          <button type="button" class="user-menu-item" disabled>
+            <i class="material-icons">person</i>
+            <span>Mi perfil (proximamente)</span>
+          </button>
+          <button type="button" class="user-menu-item" disabled>
+            <i class="material-icons">tune</i>
+            <span>Preferencias (proximamente)</span>
+          </button>
+          <div class="user-menu-divider"></div>
+          <button type="button" class="user-menu-item danger" (click)="cerrarSesion()">
+            <i class="material-icons">logout</i>
+            <span>Cerrar sesion</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>

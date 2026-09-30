@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+https://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <_PublishTargetUrl>C:\Users\boeni\Documentos\WORKSPACE-CANVIA\REQ011\2024\Fuentes\Analisis-cuantitativo-011\Agrobanco.MC\Agrobanco.MC.API\bin\Release\net5.0-windows\publish\</_PublishTargetUrl>
+    <History>True|2024-12-06T17:06:50.9371126Z;True|2024-12-04T19:29:20.8666064-05:00;True|2024-12-04T19:29:00.0196039-05:00;True|2024-11-25T10:18:35.9929684-05:00;True|2024-11-20T19:17:20.2678019-05:00;True|2024-11-20T19:15:13.4951990-05:00;True|2024-10-07T12:42:45.5072432-05:00;</History>
+  </PropertyGroup>
+</Project>
