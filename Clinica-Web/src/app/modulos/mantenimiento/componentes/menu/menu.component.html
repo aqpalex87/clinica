@@ -102,16 +102,19 @@
     <div class="field">
       <label>Nombre *</label>
       <input pInputText type="text" formControlName="nombre" />
+      <small class="field-error" *ngIf="mensajeCampo('nombre')">{{ mensajeCampo('nombre') }}</small>
     </div>
 
     <div class="field-row">
       <div class="field">
         <label>Ruta</label>
         <input pInputText type="text" formControlName="ruta" />
+        <small class="field-error" *ngIf="mensajeCampo('ruta')">{{ mensajeCampo('ruta') }}</small>
       </div>
       <div class="field">
         <label>Icono</label>
         <input pInputText type="text" formControlName="icono" />
+        <small class="field-error" *ngIf="mensajeCampo('icono')">{{ mensajeCampo('icono') }}</small>
       </div>
     </div>
 

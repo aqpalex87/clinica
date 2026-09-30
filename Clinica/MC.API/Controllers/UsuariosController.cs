@@ -21,7 +21,11 @@ namespace MC.API.Controllers
         [HttpGet]
         public IActionResult ObtenerPaginado([FromQuery] int? idEmpresa, [FromQuery] string usuario = "", [FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 10)
         {
-            var result = _usuarioService.ObtenerUsuariosPaginado(idEmpresa, usuario, pageNumber, pageSize);
+            if (!TryEmpresaSesion(out int idEmpresaSesion, out IActionResult error))
+            {
+                return error;
+            }
+            var result = _usuarioService.ObtenerUsuariosPaginado(idEmpresaSesion, usuario, pageNumber, pageSize);
             if (result.Errors.Any())
             {
                 return GetObjectResult(result);
@@ -32,6 +36,11 @@ namespace MC.API.Controllers
         [HttpPost]
         public IActionResult Crear([FromBody] UsuarioDto request)
         {
+            if (!TryEmpresaSesion(out int idEmpresaSesion, out IActionResult error))
+            {
+                return error;
+            }
+            request.IdEmpresa = idEmpresaSesion;
             var result = _usuarioService.CrearUsuario(request);
             if (result.Errors.Any())
             {
@@ -43,6 +52,11 @@ namespace MC.API.Controllers
         [HttpPut("{idUsuario}")]
         public IActionResult Actualizar(int idUsuario, [FromBody] UsuarioDto request)
         {
+            if (!TryEmpresaSesion(out int idEmpresaSesion, out IActionResult error))
+            {
+                return error;
+            }
+            request.IdEmpresa = idEmpresaSesion;
             var result = _usuarioService.ActualizarUsuario(idUsuario, request);
             if (result.Errors.Any())
             {

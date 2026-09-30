@@ -8,6 +8,7 @@ import { MenuAdminService } from 'src/app/services/menu-admin.service';
 import { SecurityService } from 'src/app/services/security.service';
 import { AuthSubjectService } from 'src/app/services/subjects/auth-subject.service';
 import { mensajeErrorApi } from 'src/app/shared/utils/mc-api-error.util';
+import { textoErrorCampo } from 'src/app/shared/utils/mc-form-error.util';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -94,6 +95,10 @@ export class MenuComponent implements OnInit {
       activo: item.activo,
     });
     this.modalVisible = true;
+  }
+
+  mensajeCampo(nombre: string): string {
+    return textoErrorCampo(this.form, nombre);
   }
 
   guardar(): void {

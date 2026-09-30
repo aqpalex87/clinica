@@ -5,11 +5,10 @@ import { ToastrService } from 'ngx-toastr';
 import { finalize, timeout } from 'rxjs/operators';
 import Swal from 'sweetalert2';
 import { SedeCrud } from 'src/app/models/sede-crud.interface';
-import { EmpresaAuth } from 'src/app/models/empresa-sede.interface';
 import { SecurityService } from 'src/app/services/security.service';
 import { SedeAdminService } from 'src/app/services/sede-admin.service';
-import { parseEmpresasMCAjax } from 'src/app/shared/utils/MC-ajax-empresas.util';
 import { mensajeErrorApi } from 'src/app/shared/utils/mc-api-error.util';
+import { textoErrorCampo } from 'src/app/shared/utils/mc-form-error.util';
 
 @Component({
   selector: 'app-sede',
@@ -29,8 +28,7 @@ export class SedeComponent implements OnInit {
 
   idEmpresaSesion = 0;
   empresaNombre = '';
-  empresas: EmpresaAuth[] = [];
-  idEmpresaFiltro: number | null = null;
+  sedeNombre = '';
   form: FormGroup;
 
   constructor(
@@ -40,7 +38,6 @@ export class SedeComponent implements OnInit {
     private toastr: ToastrService
   ) {
     this.form = this.fb.group({
-      idEmpresa: [null, [Validators.required]],
       nombre: ['', [Validators.required, Validators.maxLength(150)]],
       codigo: ['', [Validators.maxLength(30)]],
       direccion: ['', [Validators.maxLength(250)]],
@@ -51,11 +48,7 @@ export class SedeComponent implements OnInit {
   ngOnInit(): void {
     this.idEmpresaSesion = Number(this.securityService.leerIdEmpresa() || 0);
     this.empresaNombre = this.securityService.leerEmpresa() || '-';
-    if (this.idEmpresaSesion > 0) {
-      this.idEmpresaFiltro = this.idEmpresaSesion;
-    }
-    this.cargarSedes(1, this.rows);
-    this.cargarEmpresas();
+    this.sedeNombre = this.securityService.leerSede() || '-';
   }
 
   onLazyLoad(event: LazyLoadEvent): void {
@@ -79,7 +72,6 @@ export class SedeComponent implements OnInit {
     this.editando = false;
     this.idEditando = 0;
     this.form.reset({
-      idEmpresa: this.idEmpresaFiltro || this.idEmpresaSesion || null,
       nombre: '',
       codigo: '',
       direccion: '',
@@ -92,13 +84,16 @@ export class SedeComponent implements OnInit {
     this.editando = true;
     this.idEditando = item.idSede;
     this.form.patchValue({
-      idEmpresa: item.idEmpresa,
       nombre: item.nombre,
       codigo: item.codigo,
       direccion: item.direccion,
       activo: item.activo,
     });
     this.modalVisible = true;
+  }
+
+  mensajeCampo(nombre: string): string {
+    return textoErrorCampo(this.form, nombre);
   }
 
   guardar(): void {
@@ -109,7 +104,7 @@ export class SedeComponent implements OnInit {
 
     const data: SedeCrud = {
       idSede: this.idEditando,
-      idEmpresa: Number(this.form.value.idEmpresa),
+      idEmpresa: this.idEmpresaSesion,
       nombre: (this.form.value.nombre ?? '').trim(),
       codigo: (this.form.value.codigo ?? '').trim(),
       direccion: (this.form.value.direccion ?? '').trim(),
@@ -167,7 +162,7 @@ export class SedeComponent implements OnInit {
 
   private cargarSedes(pageNumber: number, pageSize: number): void {
     this.loading = true;
-    this.sedeService.obtenerPaginado(this.idEmpresaFiltro, this.busqueda, pageNumber, pageSize)
+    this.sedeService.obtenerPaginado(this.idEmpresaSesion, this.busqueda, pageNumber, pageSize)
       .pipe(
         timeout(15000),
         finalize(() => {
@@ -183,19 +178,4 @@ export class SedeComponent implements OnInit {
       });
   }
 
-  private cargarEmpresas(): void {
-    this.securityService.obtenerEmpresasApi().pipe(timeout(15000)).subscribe({
-      next: (res: any) => {
-        this.empresas = parseEmpresasMCAjax(res);
-        if (this.idEmpresaSesion > 0 && this.empresas.some(x => x.idEmpresa === this.idEmpresaSesion)) {
-          this.idEmpresaFiltro = this.idEmpresaSesion;
-        }
-        this.cargarSedes(1, this.rows);
-      },
-      error: (err) => {
-        this.toastr.error(mensajeErrorApi(err, 'No se pudo obtener la lista de empresas.'));
-        this.cargarSedes(1, this.rows);
-      }
-    });
-  }
 }

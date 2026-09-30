@@ -3,7 +3,7 @@
     <div class="section no-mar-bot">
       <div class="col s12 m12 l12 sede-header">
         <h1 class="title">Mantenimiento de Sedes</h1>
-        <p class="subtitle">Empresa sesión: {{ empresaNombre }}</p>
+        <p class="subtitle">{{ empresaNombre }} · {{ sedeNombre }}</p>
       </div>
     </div>
   </div>
@@ -12,10 +12,6 @@
 <div class="sede-toolbar">
   <div class="search-wrap">
     <i class="pi pi-search"></i>
-    <select class="empresa-filter-select browser-default" [(ngModel)]="idEmpresaFiltro" (change)="buscar()">
-      <option [ngValue]="null">Todas las empresas</option>
-      <option *ngFor="let e of empresas" [ngValue]="e.idEmpresa">{{ e.nombre }}</option>
-    </select>
     <input pInputText type="text" [(ngModel)]="busqueda" placeholder="Buscar por nombre" (keyup.enter)="buscar()" />
     <button pButton type="button" icon="pi pi-search" label="Buscar" class="btn-search" (click)="buscar()"></button>
     <button pButton type="button" icon="pi pi-times" class="btn-clear" (click)="limpiarBusqueda()"></button>
@@ -83,24 +79,20 @@
 >
   <form [formGroup]="form" class="sede-form">
     <div class="field">
-      <label>Empresa *</label>
-      <select class="empresa-filter-select browser-default empresa-modal-select" formControlName="idEmpresa">
-        <option [ngValue]="null">Seleccione empresa</option>
-        <option *ngFor="let e of empresas" [ngValue]="e.idEmpresa">{{ e.nombre }}</option>
-      </select>
-    </div>
-    <div class="field">
       <label>Nombre *</label>
       <input pInputText type="text" formControlName="nombre" />
+      <small class="field-error" *ngIf="mensajeCampo('nombre')">{{ mensajeCampo('nombre') }}</small>
     </div>
     <div class="field-row">
       <div class="field">
         <label>Código</label>
         <input pInputText type="text" formControlName="codigo" />
+        <small class="field-error" *ngIf="mensajeCampo('codigo')">{{ mensajeCampo('codigo') }}</small>
       </div>
       <div class="field">
         <label>Dirección</label>
         <input pInputText type="text" formControlName="direccion" />
+        <small class="field-error" *ngIf="mensajeCampo('direccion')">{{ mensajeCampo('direccion') }}</small>
       </div>
     </div>
     <div class="field checkbox-field">

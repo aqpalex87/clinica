@@ -4,12 +4,11 @@ import { LazyLoadEvent } from 'primeng/api';
 import { ToastrService } from 'ngx-toastr';
 import { finalize, timeout } from 'rxjs/operators';
 import Swal from 'sweetalert2';
-import { EmpresaAuth } from 'src/app/models/empresa-sede.interface';
 import { RolCrud } from 'src/app/models/rol-crud.interface';
 import { RolAdminService } from 'src/app/services/rol-admin.service';
 import { SecurityService } from 'src/app/services/security.service';
-import { parseEmpresasMCAjax } from 'src/app/shared/utils/MC-ajax-empresas.util';
 import { mensajeErrorApi } from 'src/app/shared/utils/mc-api-error.util';
+import { textoErrorCampo } from 'src/app/shared/utils/mc-form-error.util';
 
 @Component({
   selector: 'app-rol',
@@ -29,8 +28,7 @@ export class RolComponent implements OnInit {
 
   idEmpresaSesion = 0;
   empresaNombre = '';
-  empresas: EmpresaAuth[] = [];
-  idEmpresaFiltro: number | null = null;
+  sedeNombre = '';
   form: FormGroup;
 
   constructor(
@@ -40,7 +38,6 @@ export class RolComponent implements OnInit {
     private toastr: ToastrService
   ) {
     this.form = this.fb.group({
-      idEmpresa: [null, [Validators.required]],
       nombre: ['', [Validators.required, Validators.maxLength(150)]],
       descripcion: ['', [Validators.maxLength(300)]],
       activo: [true],
@@ -50,11 +47,7 @@ export class RolComponent implements OnInit {
   ngOnInit(): void {
     this.idEmpresaSesion = Number(this.securityService.leerIdEmpresa() || 0);
     this.empresaNombre = this.securityService.leerEmpresa() || '-';
-    if (this.idEmpresaSesion > 0) {
-      this.idEmpresaFiltro = this.idEmpresaSesion;
-    }
-    this.cargarRoles(1, this.rows);
-    this.cargarEmpresas();
+    this.sedeNombre = this.securityService.leerSede() || '-';
   }
 
   onLazyLoad(event: LazyLoadEvent): void {
@@ -78,7 +71,6 @@ export class RolComponent implements OnInit {
     this.editando = false;
     this.idEditando = 0;
     this.form.reset({
-      idEmpresa: this.idEmpresaFiltro || this.idEmpresaSesion || null,
       nombre: '',
       descripcion: '',
       activo: true,
@@ -90,12 +82,15 @@ export class RolComponent implements OnInit {
     this.editando = true;
     this.idEditando = item.idRol;
     this.form.patchValue({
-      idEmpresa: item.idEmpresa,
       nombre: item.nombre,
       descripcion: item.descripcion,
       activo: item.activo,
     });
     this.modalVisible = true;
+  }
+
+  mensajeCampo(nombre: string): string {
+    return textoErrorCampo(this.form, nombre);
   }
 
   guardar(): void {
@@ -106,7 +101,7 @@ export class RolComponent implements OnInit {
 
     const data: RolCrud = {
       idRol: this.idEditando,
-      idEmpresa: Number(this.form.value.idEmpresa),
+      idEmpresa: this.idEmpresaSesion,
       nombre: (this.form.value.nombre ?? '').trim(),
       descripcion: (this.form.value.descripcion ?? '').trim(),
       activo: !!this.form.value.activo,
@@ -163,7 +158,7 @@ export class RolComponent implements OnInit {
 
   private cargarRoles(pageNumber: number, pageSize: number): void {
     this.loading = true;
-    this.rolService.obtenerPaginado(this.idEmpresaFiltro, this.busqueda, pageNumber, pageSize)
+    this.rolService.obtenerPaginado(this.idEmpresaSesion, this.busqueda, pageNumber, pageSize)
       .pipe(
         timeout(15000),
         finalize(() => {
@@ -179,19 +174,4 @@ export class RolComponent implements OnInit {
       });
   }
 
-  private cargarEmpresas(): void {
-    this.securityService.obtenerEmpresasApi().pipe(timeout(15000)).subscribe({
-      next: (res: any) => {
-        this.empresas = parseEmpresasMCAjax(res);
-        if (this.idEmpresaSesion > 0 && this.empresas.some(x => x.idEmpresa === this.idEmpresaSesion)) {
-          this.idEmpresaFiltro = this.idEmpresaSesion;
-        }
-        this.cargarRoles(1, this.rows);
-      },
-      error: (err) => {
-        this.toastr.error(mensajeErrorApi(err, 'No se pudo obtener la lista de empresas.'));
-        this.cargarRoles(1, this.rows);
-      }
-    });
-  }
 }

@@ -1,0 +1,15 @@
+IF OBJECT_ID(N'dbo.MC_DELETE_PACIENTE', N'P') IS NOT NULL
+    DROP PROCEDURE dbo.MC_DELETE_PACIENTE;
+GO
+CREATE PROCEDURE [dbo].[MC_DELETE_PACIENTE]
+    @IdPaciente INT,
+    @Resultado INT OUTPUT
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    DELETE FROM dbo.Pacientes
+    WHERE IdPaciente = @IdPaciente;
+
+    SET @Resultado = CASE WHEN @@ROWCOUNT > 0 THEN 1 ELSE 0 END;
+END

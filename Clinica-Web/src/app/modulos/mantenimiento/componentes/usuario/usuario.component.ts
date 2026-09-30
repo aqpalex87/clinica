@@ -4,13 +4,13 @@ import { LazyLoadEvent } from 'primeng/api';
 import { ToastrService } from 'ngx-toastr';
 import { finalize, timeout } from 'rxjs/operators';
 import Swal from 'sweetalert2';
-import { EmpresaAuth } from 'src/app/models/empresa-sede.interface';
 import { RolSimple } from 'src/app/models/menu-rol.interface';
 import { UsuarioCrud } from 'src/app/models/usuario-crud.interface';
 import { MenuRolAdminService } from 'src/app/services/menu-rol-admin.service';
 import { SecurityService } from 'src/app/services/security.service';
 import { UsuarioAdminService } from 'src/app/services/usuario-admin.service';
 import { mensajeErrorApi } from 'src/app/shared/utils/mc-api-error.util';
+import { textoErrorCampo } from 'src/app/shared/utils/mc-form-error.util';
 
 @Component({
   selector: 'app-usuario',
@@ -30,9 +30,8 @@ export class UsuarioComponent implements OnInit {
 
   idEmpresaSesion = 0;
   empresaNombre = '';
-  empresas: EmpresaAuth[] = [];
+  sedeNombre = '';
   roles: RolSimple[] = [];
-  idEmpresaFiltro: number | null = null;
   form: FormGroup;
 
   constructor(
@@ -45,7 +44,6 @@ export class UsuarioComponent implements OnInit {
     this.form = this.fb.group({
       usuarioLogin: ['', [Validators.required, Validators.maxLength(50)]],
       password: [''],
-      idEmpresa: [null, [Validators.required]],
       idRol: [null, [Validators.required]],
       activo: [true],
     });
@@ -54,7 +52,7 @@ export class UsuarioComponent implements OnInit {
   ngOnInit(): void {
     this.idEmpresaSesion = Number(this.securityService.leerIdEmpresa() || 0);
     this.empresaNombre = this.securityService.leerEmpresa() || '-';
-    this.cargarEmpresas();
+    this.sedeNombre = this.securityService.leerSede() || '-';
   }
 
   onLazyLoad(event: LazyLoadEvent): void {
@@ -80,14 +78,13 @@ export class UsuarioComponent implements OnInit {
     this.form.reset({
       usuarioLogin: '',
       password: '',
-      idEmpresa: this.idEmpresaFiltro || this.idEmpresaSesion || null,
       idRol: null,
       activo: true,
     });
     this.form.get('password')?.setValidators([Validators.required, Validators.maxLength(100)]);
     this.form.get('password')?.updateValueAndValidity();
     this.roles = [];
-    void this.cargarRolesFormulario(Number(this.form.value.idEmpresa || 0));
+    void this.cargarRolesFormulario(this.idEmpresaSesion);
     this.modalVisible = true;
   }
 
@@ -97,21 +94,18 @@ export class UsuarioComponent implements OnInit {
     this.form.patchValue({
       usuarioLogin: item.usuarioLogin,
       password: '',
-      idEmpresa: item.idEmpresa,
       idRol: item.idRol,
       activo: item.activo,
     });
     this.form.get('password')?.clearValidators();
     this.form.get('password')?.updateValueAndValidity();
     this.roles = [];
-    void this.cargarRolesFormulario(item.idEmpresa, item.idRol);
+    void this.cargarRolesFormulario(this.idEmpresaSesion, item.idRol);
     this.modalVisible = true;
   }
 
-  onEmpresaFormularioChange(): void {
-    this.form.patchValue({ idRol: null });
-    this.roles = [];
-    void this.cargarRolesFormulario(Number(this.form.value.idEmpresa || 0));
+  mensajeCampo(nombre: string): string {
+    return textoErrorCampo(this.form, nombre);
   }
 
   guardar(): void {
@@ -124,7 +118,7 @@ export class UsuarioComponent implements OnInit {
       idUsuario: this.idEditando,
       usuarioLogin: (this.form.value.usuarioLogin ?? '').trim(),
       password: (this.form.value.password ?? '').trim(),
-      idEmpresa: Number(this.form.value.idEmpresa),
+      idEmpresa: this.idEmpresaSesion,
       idRol: Number(this.form.value.idRol),
       activo: !!this.form.value.activo,
     };
@@ -180,7 +174,7 @@ export class UsuarioComponent implements OnInit {
 
   private cargarUsuarios(pageNumber: number, pageSize: number): void {
     this.loading = true;
-    this.usuarioService.obtenerPaginado(this.idEmpresaFiltro, this.busqueda, pageNumber, pageSize)
+    this.usuarioService.obtenerPaginado(this.idEmpresaSesion, this.busqueda, pageNumber, pageSize)
       .pipe(
         timeout(15000),
         finalize(() => {
@@ -194,23 +188,6 @@ export class UsuarioComponent implements OnInit {
         },
         error: (err) => this.toastr.error(mensajeErrorApi(err, 'No se pudo obtener el listado de usuarios.')),
       });
-  }
-
-  private cargarEmpresas(): void {
-    this.securityService.obtenerEmpresasApi().pipe(timeout(15000)).subscribe({
-      next: (res: any) => {
-        const source = res?.response?.response ?? res?.response ?? [];
-        this.empresas = (Array.isArray(source) ? source : []).map((x: any) => ({
-          idEmpresa: Number(x?.idEmpresa ?? x?.IdEmpresa ?? 0),
-          nombre: (x?.nombre ?? x?.Nombre ?? '').toString()
-        })).filter((x: EmpresaAuth) => x.idEmpresa > 0);
-        if (this.idEmpresaSesion > 0 && this.empresas.some(x => x.idEmpresa === this.idEmpresaSesion)) {
-          this.idEmpresaFiltro = this.idEmpresaSesion;
-        }
-        this.cargarUsuarios(1, this.rows);
-      },
-      error: (err) => this.toastr.error(mensajeErrorApi(err, 'No se pudo obtener la lista de empresas.'))
-    });
   }
 
   private async cargarRolesFormulario(idEmpresa: number, idRolSeleccionado?: number): Promise<void> {

@@ -139,6 +139,7 @@ export class LoginComponent implements OnInit {
         if (token) {
           this.securityService.guardarTokenMC(token);
         }
+        this.securityService.guardarIdSede(String(this.idSede));
         this.securityService.obtenerMenusApi().pipe(timeout(15000)).subscribe({
           next: (menusRes: any) => {
             this.securityService.guardarMenusApi(menusRes.response ?? []);

@@ -16,6 +16,14 @@ const routes: Routes = [
         (authentication) => authentication.MantenimientoModule
       ),
   },
+  {
+    path: 'procesos',
+    canActivate: [AuthGuard],
+    loadChildren: () =>
+      import('./modulos/procesos/procesos.module').then(
+        (modulo) => modulo.ProcesosModule
+      ),
+  },
   { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
   { path: 'Redirect/Index', component: IndexComponent },
   { path: '**', pathMatch: 'full', redirectTo: 'login' },

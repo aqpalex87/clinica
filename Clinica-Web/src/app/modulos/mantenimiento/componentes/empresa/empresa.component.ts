@@ -7,6 +7,7 @@ import Swal from 'sweetalert2';
 import { EmpresaCrud } from 'src/app/models/empresa-crud.interface';
 import { EmpresaAdminService } from 'src/app/services/empresa-admin.service';
 import { mensajeErrorApi } from 'src/app/shared/utils/mc-api-error.util';
+import { rucOpcional, textoErrorCampo } from 'src/app/shared/utils/mc-form-error.util';
 
 @Component({
   selector: 'app-empresa',
@@ -33,7 +34,7 @@ export class EmpresaComponent implements OnInit {
   ) {
     this.form = this.fb.group({
       nombre: ['', [Validators.required, Validators.maxLength(150)]],
-      ruc: ['', [Validators.maxLength(20)]],
+      ruc: ['', [Validators.maxLength(11), rucOpcional]],
       activo: [true],
     });
   }
@@ -79,6 +80,10 @@ export class EmpresaComponent implements OnInit {
       activo: item.activo,
     });
     this.modalVisible = true;
+  }
+
+  mensajeCampo(nombre: string): string {
+    return textoErrorCampo(this.form, nombre);
   }
 
   guardar(): void {

@@ -32,6 +32,7 @@ export const MCApiRoutes = {
   roles: () => `${MC()}/Roles`,
   menuroles: () => `${MC()}/MenuRoles`,
   usuarios: () => `${MC()}/Usuarios`,
+  pacientes: () => `${MC()}/Pacientes`,
   empresas: () => `${MC()}/Empresas`,
   menu: () => `${MC()}/Menu`,
   clientes: () => `${MC()}/Clientes`,

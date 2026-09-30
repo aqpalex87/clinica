@@ -21,7 +21,11 @@ namespace MC.API.Controllers
         [HttpGet]
         public IActionResult ObtenerPaginado([FromQuery] int? idEmpresa, [FromQuery] string nombre = "", [FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 10)
         {
-            var result = _rolService.ObtenerRolesPaginado(idEmpresa, nombre, pageNumber, pageSize);
+            if (!TryEmpresaSesion(out int idEmpresaSesion, out IActionResult error))
+            {
+                return error;
+            }
+            var result = _rolService.ObtenerRolesPaginado(idEmpresaSesion, nombre, pageNumber, pageSize);
             if (result.Errors.Any())
             {
                 return GetObjectResult(result);
@@ -32,6 +36,11 @@ namespace MC.API.Controllers
         [HttpPost]
         public IActionResult Crear([FromBody] RolDto request)
         {
+            if (!TryEmpresaSesion(out int idEmpresaSesion, out IActionResult error))
+            {
+                return error;
+            }
+            request.IdEmpresa = idEmpresaSesion;
             var result = _rolService.CrearRol(request);
             if (result.Errors.Any())
             {
@@ -43,6 +52,11 @@ namespace MC.API.Controllers
         [HttpPut("{idRol}")]
         public IActionResult Actualizar(int idRol, [FromBody] RolDto request)
         {
+            if (!TryEmpresaSesion(out int idEmpresaSesion, out IActionResult error))
+            {
+                return error;
+            }
+            request.IdEmpresa = idEmpresaSesion;
             var result = _rolService.ActualizarRol(idRol, request);
             if (result.Errors.Any())
             {

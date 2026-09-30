@@ -45,6 +45,10 @@ export class SecurityService {
     localStorage.setItem('idempresa', idEmpresa.toString());
   }
 
+  public guardarIdSede(idSede: string): void {
+    localStorage.setItem('idsede', idSede.toString());
+  }
+
   public guardarDataSeguridad(data: DataSeguridad) {
     localStorage.setItem('vEmail', data.vEmail.toString());
     localStorage.setItem('vNombre', data.vNombre.toString());
@@ -78,6 +82,14 @@ export class SecurityService {
   public leerIdEmpresa() {
     if (localStorage.getItem('idempresa')) {
       return localStorage.getItem('idempresa');
+    } else {
+      return '';
+    }
+  }
+
+  public leerIdSede() {
+    if (localStorage.getItem('idsede')) {
+      return localStorage.getItem('idsede');
     } else {
       return '';
     }
@@ -349,6 +361,7 @@ export class SecurityService {
     localStorage.removeItem('vNombre');
     localStorage.removeItem('idperfil');
     localStorage.removeItem('idempresa');
+    localStorage.removeItem('idsede');
     localStorage.removeItem('UsuarioWeb');
     localStorage.removeItem('tokenMC');
     localStorage.removeItem('tokenSGS');

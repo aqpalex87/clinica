@@ -1,3 +1,0 @@
-﻿<Project>
-  <Import Project="..\build\MC.API.props" />
-</Project>

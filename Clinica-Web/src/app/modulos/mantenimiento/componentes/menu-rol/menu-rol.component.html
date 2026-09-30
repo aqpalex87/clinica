@@ -3,7 +3,7 @@
     <div class="section no-mar-bot">
       <div class="col s12 m12 l12 menu-rol-header">
         <h1 class="title">Mantenimiento de Menu-Roles</h1>
-        <p class="subtitle">Empresa sesión: {{ empresaNombre }}</p>
+        <p class="subtitle">{{ empresaNombre }} · {{ sedeNombre }}</p>
       </div>
     </div>
   </div>
@@ -12,16 +12,8 @@
 <div class="menu-rol-toolbar">
   <div class="selectors-wrap">
     <div class="field-inline">
-      <label>Empresa</label>
-      <select class="plantilla-select browser-default" [(ngModel)]="idEmpresa" (change)="onEmpresaChange()">
-        <option [ngValue]="null">Seleccione empresa</option>
-        <option *ngFor="let e of empresas" [ngValue]="e.idEmpresa">{{ e.nombre }}</option>
-      </select>
-    </div>
-
-    <div class="field-inline">
       <label>Rol</label>
-      <select class="plantilla-select browser-default" [(ngModel)]="idRol" (change)="onRolChange()" [disabled]="!idEmpresa || roles.length === 0">
+      <select class="plantilla-select browser-default" [(ngModel)]="idRol" (change)="onRolChange()" [disabled]="roles.length === 0">
         <option [ngValue]="null">Seleccione rol</option>
         <option *ngFor="let r of roles" [ngValue]="r.idRol">{{ r.nombre }}</option>
       </select>
@@ -47,6 +39,6 @@
   ></p-tree>
 
   <div class="empty-message" *ngIf="!loadingTree && (!idRol || menuTree.length === 0)">
-    Seleccione empresa y rol para gestionar los menús.
+    Seleccione un rol para gestionar los menús.
   </div>
 </div>

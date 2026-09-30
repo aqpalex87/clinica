@@ -21,7 +21,11 @@ namespace MC.API.Controllers
         [HttpGet("roles/{idEmpresa}")]
         public IActionResult ObtenerRolesPorEmpresa(int idEmpresa)
         {
-            var result = _menuRolService.ObtenerRolesPorEmpresa(idEmpresa);
+            if (!TryEmpresaSesion(out int idEmpresaSesion, out IActionResult error))
+            {
+                return error;
+            }
+            var result = _menuRolService.ObtenerRolesPorEmpresa(idEmpresaSesion);
             if (result.Errors.Any())
             {
                 return GetObjectResult(result);

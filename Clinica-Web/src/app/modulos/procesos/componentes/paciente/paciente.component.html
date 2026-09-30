@@ -1,0 +1,174 @@
+<div class="section no-padding">
+  <div class="row col s12 no-mar-bot">
+    <div class="section no-mar-bot">
+      <div class="col s12 m12 l12 paciente-header">
+        <h1 class="title">Pacientes</h1>
+        <p class="subtitle">{{ empresaNombre }} · {{ sedeNombre }}</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="paciente-toolbar">
+  <div class="search-wrap">
+    <input pInputText type="text" [(ngModel)]="busquedaNombre" placeholder="Nombre o apellido" (keyup.enter)="buscar()" />
+    <input pInputText type="text" [(ngModel)]="busquedaDocumento" placeholder="DNI o documento" (keyup.enter)="buscar()" />
+    <input pInputText type="text" [(ngModel)]="busquedaContacto" placeholder="Celular o correo" (keyup.enter)="buscar()" />
+    <button pButton type="button" icon="pi pi-search" label="Buscar" class="btn-search" (click)="buscar()"></button>
+    <button pButton type="button" icon="pi pi-times" class="btn-clear" (click)="limpiarBusqueda()"></button>
+  </div>
+  <button pButton type="button" label="Nuevo paciente" icon="pi pi-plus" class="btn-add" (click)="abrirNuevo()"></button>
+</div>
+
+<p-table
+  [value]="pacientes"
+  styleClass="p-datatable-sm p-datatable-gridlines paciente-table"
+  [paginator]="true"
+  [rows]="rows"
+  [totalRecords]="totalRows"
+  [lazy]="true"
+  [loading]="loading"
+  [rowsPerPageOptions]="[10, 20, 50]"
+  [showCurrentPageReport]="true"
+  currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords}"
+  (onLazyLoad)="onLazyLoad($event)"
+>
+  <ng-template pTemplate="header">
+    <tr>
+      <th>Código</th>
+      <th>Documento</th>
+      <th>Paciente</th>
+      <th>Edad</th>
+      <th>Sexo</th>
+      <th>Contacto</th>
+      <th>Sede</th>
+      <th>Estado</th>
+      <th class="text-center">Opciones</th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-item>
+    <tr>
+      <td>{{ item.codigo || item.idPaciente }}</td>
+      <td>{{ item.tipoDocumento }} {{ item.numeroDocumento }}</td>
+      <td>{{ item.nombreCompleto || item.nombres }}</td>
+      <td>{{ item.edad }} años</td>
+      <td>{{ etiquetaSexo(item.sexo) }}</td>
+      <td>
+        <div>{{ item.celular }}</div>
+        <small *ngIf="item.correo">{{ item.correo }}</small>
+      </td>
+      <td>{{ item.nombreSede || '-' }}</td>
+      <td>
+        <span class="status-badge" [ngClass]="item.activo ? 'active' : 'inactive'">
+          {{ item.activo ? 'Activo' : 'Inactivo' }}
+        </span>
+      </td>
+      <td class="text-center actions">
+        <button pButton type="button" icon="pi pi-pencil" class="btn-action edit" (click)="editar(item)"></button>
+        <button pButton type="button" icon="pi pi-trash" class="btn-action delete" (click)="eliminar(item)"></button>
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="emptymessage">
+    <tr>
+      <td colspan="9">No hay pacientes para mostrar.</td>
+    </tr>
+  </ng-template>
+</p-table>
+
+<p-dialog
+  [(visible)]="modalVisible"
+  [modal]="true"
+  [closable]="true"
+  [draggable]="false"
+  [resizable]="false"
+  [style]="{ width: '58rem' }"
+  [header]="editando ? 'Editar paciente' : 'Registrar paciente'"
+>
+  <form [formGroup]="form" class="paciente-form">
+    <div class="field-row">
+      <div class="field">
+        <label>Tipo de documento *</label>
+        <select class="paciente-select browser-default" formControlName="tipoDocumento" (change)="alCambiarTipoDocumento()">
+          <option *ngFor="let t of tiposDocumento" [ngValue]="t.valor">{{ t.etiqueta }}</option>
+        </select>
+        <small class="field-error" *ngIf="mensajeCampo('tipoDocumento')">{{ mensajeCampo('tipoDocumento') }}</small>
+      </div>
+      <div class="field">
+        <label>Número de documento *</label>
+        <input pInputText type="text" formControlName="numeroDocumento" />
+        <small class="field-error" *ngIf="mensajeCampo('numeroDocumento')">{{ mensajeCampo('numeroDocumento') }}</small>
+      </div>
+    </div>
+
+    <div class="field-row">
+      <div class="field">
+        <label>Apellido paterno *</label>
+        <input pInputText type="text" formControlName="apellidoPaterno" />
+        <small class="field-error" *ngIf="mensajeCampo('apellidoPaterno')">{{ mensajeCampo('apellidoPaterno') }}</small>
+      </div>
+      <div class="field">
+        <label>Apellido materno</label>
+        <input pInputText type="text" formControlName="apellidoMaterno" />
+        <small class="field-error" *ngIf="mensajeCampo('apellidoMaterno')">{{ mensajeCampo('apellidoMaterno') }}</small>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Nombres *</label>
+      <input pInputText type="text" formControlName="nombres" />
+      <small class="field-error" *ngIf="mensajeCampo('nombres')">{{ mensajeCampo('nombres') }}</small>
+    </div>
+
+    <div class="field-row">
+      <div class="field">
+        <label>Fecha de nacimiento *</label>
+        <input class="paciente-date browser-default" type="date" formControlName="fechaNacimiento" />
+        <small class="field-error" *ngIf="mensajeCampo('fechaNacimiento')">{{ mensajeCampo('fechaNacimiento') }}</small>
+      </div>
+      <div class="field">
+        <label>Sexo *</label>
+        <select class="paciente-select browser-default" formControlName="sexo">
+          <option [ngValue]="'M'">Masculino</option>
+          <option [ngValue]="'F'">Femenino</option>
+        </select>
+        <small class="field-error" *ngIf="mensajeCampo('sexo')">{{ mensajeCampo('sexo') }}</small>
+      </div>
+    </div>
+
+    <div class="field-row">
+      <div class="field">
+        <label>Celular *</label>
+        <input pInputText type="text" formControlName="celular" maxlength="9" placeholder="9 dígitos" />
+        <small class="field-error" *ngIf="mensajeCampo('celular')">{{ mensajeCampo('celular') }}</small>
+      </div>
+      <div class="field">
+        <label>Correo</label>
+        <input pInputText type="email" formControlName="correo" />
+        <small class="field-error" *ngIf="mensajeCampo('correo')">{{ mensajeCampo('correo') }}</small>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Dirección</label>
+      <input pInputText type="text" formControlName="direccion" />
+      <small class="field-error" *ngIf="mensajeCampo('direccion')">{{ mensajeCampo('direccion') }}</small>
+    </div>
+
+    <div class="field">
+      <label>Observación</label>
+      <textarea class="paciente-area browser-default" rows="2" formControlName="observacion" placeholder="Ayuno, embarazo, medicación u otra condición para la toma de muestra"></textarea>
+      <small class="field-error" *ngIf="mensajeCampo('observacion')">{{ mensajeCampo('observacion') }}</small>
+    </div>
+
+    <div class="field checkbox-field">
+      <p-checkbox [binary]="true" formControlName="activo"></p-checkbox>
+      <label>Activo</label>
+    </div>
+  </form>
+
+  <ng-template pTemplate="footer">
+    <button pButton type="button" label="Cancelar" icon="pi pi-times" class="btn-clear" (click)="modalVisible = false"></button>
+    <button pButton type="button" label="Guardar" icon="pi pi-save" class="btn-save" (click)="guardar()"></button>
+  </ng-template>
+</p-dialog>

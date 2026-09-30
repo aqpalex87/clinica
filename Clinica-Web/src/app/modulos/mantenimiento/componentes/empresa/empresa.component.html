@@ -76,10 +76,12 @@
     <div class="field">
       <label>Nombre *</label>
       <input pInputText type="text" formControlName="nombre" />
+      <small class="field-error" *ngIf="mensajeCampo('nombre')">{{ mensajeCampo('nombre') }}</small>
     </div>
     <div class="field">
       <label>RUC</label>
-      <input pInputText type="text" formControlName="ruc" />
+      <input pInputText type="text" formControlName="ruc" maxlength="11" />
+      <small class="field-error" *ngIf="mensajeCampo('ruc')">{{ mensajeCampo('ruc') }}</small>
     </div>
     <div class="field checkbox-field">
       <p-checkbox [binary]="true" formControlName="activo"></p-checkbox>

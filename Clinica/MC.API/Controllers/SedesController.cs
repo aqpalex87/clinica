@@ -8,7 +8,7 @@ namespace MC.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    //[Authorize]
+    [Authorize]
 
  
     public class SedesController : CustomControllerBase
@@ -22,7 +22,11 @@ namespace MC.API.Controllers
         [HttpGet("empresa/{idEmpresa}")]
         public IActionResult ObtenerSedesPorEmpresa(int idEmpresa)
         {
-            var result = _sedesService.ObtenerSedesPorEmpresa(idEmpresa);
+            if (!TryEmpresaSesion(out int idEmpresaSesion, out IActionResult error))
+            {
+                return error;
+            }
+            var result = _sedesService.ObtenerSedesPorEmpresa(idEmpresaSesion);
             if (result.Errors.Any())
             {
                 return GetObjectResult(result);
@@ -33,7 +37,11 @@ namespace MC.API.Controllers
         [HttpGet]
         public IActionResult ObtenerSedesPaginado([FromQuery] int? idEmpresa, [FromQuery] string nombre = "", [FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 10)
         {
-            var result = _sedesService.ObtenerSedesPaginado(idEmpresa, nombre, pageNumber, pageSize);
+            if (!TryEmpresaSesion(out int idEmpresaSesion, out IActionResult error))
+            {
+                return error;
+            }
+            var result = _sedesService.ObtenerSedesPaginado(idEmpresaSesion, nombre, pageNumber, pageSize);
             if (result.Errors.Any())
             {
                 return GetObjectResult(result);
@@ -44,6 +52,11 @@ namespace MC.API.Controllers
         [HttpPost]
         public IActionResult Crear([FromBody] SedesDto request)
         {
+            if (!TryEmpresaSesion(out int idEmpresaSesion, out IActionResult error))
+            {
+                return error;
+            }
+            request.IdEmpresa = idEmpresaSesion;
             var result = _sedesService.CrearSede(request);
             if (result.Errors.Any())
             {
@@ -55,6 +68,11 @@ namespace MC.API.Controllers
         [HttpPut("{idSede}")]
         public IActionResult Actualizar(int idSede, [FromBody] SedesDto request)
         {
+            if (!TryEmpresaSesion(out int idEmpresaSesion, out IActionResult error))
+            {
+                return error;
+            }
+            request.IdEmpresa = idEmpresaSesion;
             var result = _sedesService.ActualizarSede(idSede, request);
             if (result.Errors.Any())
             {

@@ -1,0 +1,57 @@
+# Visual Studio
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.rsuser
+
+# Compilación .NET
+[Bb]in/
+[Oo]bj/
+[Dd]ebug/
+[Rr]elease/
+*.cache
+*.lib
+*.pdb
+*.dll
+*.exe
+*.nupkg
+project.lock.json
+artifacts/
+[Ll]og/
+[Ll]ogs/
+
+# NuGet
+**/[Pp]ackages/*
+!**/[Pp]ackages/build/
+
+# Pruebas
+[Tt]est[Rr]esult*/
+*.trx
+*.coverage
+*.coveragexml
+
+# Angular y Node
+node_modules/
+dist/
+.angular/
+tmp/
+out-tsc/
+bazel-out/
+.sass-cache/
+coverage/
+typings/
+npm-debug.log
+yarn-error.log
+.cache/
+.lib/
+
+# Sistema
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# IDE
+.idea/
+*.sln.iml

@@ -3,7 +3,7 @@
     <div class="section no-mar-bot">
       <div class="col s12 m12 l12 usuario-header">
         <h1 class="title">Mantenimiento de Usuarios</h1>
-        <p class="subtitle">Empresa sesión: {{ empresaNombre }}</p>
+        <p class="subtitle">{{ empresaNombre }} · {{ sedeNombre }}</p>
       </div>
     </div>
   </div>
@@ -12,10 +12,6 @@
 <div class="usuario-toolbar">
   <div class="search-wrap">
     <i class="pi pi-search"></i>
-    <select class="empresa-filter-select browser-default" [(ngModel)]="idEmpresaFiltro" (change)="buscar()">
-      <option [ngValue]="null">Todas las empresas</option>
-      <option *ngFor="let e of empresas" [ngValue]="e.idEmpresa">{{ e.nombre }}</option>
-    </select>
     <input pInputText type="text" [(ngModel)]="busqueda" placeholder="Buscar por usuario" (keyup.enter)="buscar()" />
     <button pButton type="button" icon="pi pi-search" label="Buscar" class="btn-search" (click)="buscar()"></button>
     <button pButton type="button" icon="pi pi-times" class="btn-clear" (click)="limpiarBusqueda()"></button>
@@ -83,26 +79,20 @@
     <div class="field">
       <label>Usuario *</label>
       <input pInputText type="text" formControlName="usuarioLogin" />
+      <small class="field-error" *ngIf="mensajeCampo('usuarioLogin')">{{ mensajeCampo('usuarioLogin') }}</small>
     </div>
     <div class="field">
       <label>{{ editando ? 'Contraseña (opcional)' : 'Contraseña *' }}</label>
       <input pInputText type="password" formControlName="password" />
+      <small class="field-error" *ngIf="mensajeCampo('password')">{{ mensajeCampo('password') }}</small>
     </div>
-    <div class="field-row">
-      <div class="field">
-        <label>Empresa *</label>
-        <select class="empresa-filter-select browser-default empresa-modal-select" formControlName="idEmpresa" (change)="onEmpresaFormularioChange()">
-          <option [ngValue]="null">Seleccione empresa</option>
-          <option *ngFor="let e of empresas" [ngValue]="e.idEmpresa">{{ e.nombre }}</option>
-        </select>
-      </div>
-      <div class="field">
-        <label>Rol *</label>
-        <select class="empresa-filter-select browser-default empresa-modal-select" formControlName="idRol">
-          <option [ngValue]="null">Seleccione rol</option>
-          <option *ngFor="let r of roles" [ngValue]="r.idRol">{{ r.nombre }}</option>
-        </select>
-      </div>
+    <div class="field">
+      <label>Rol *</label>
+      <select class="empresa-filter-select browser-default empresa-modal-select" formControlName="idRol">
+        <option [ngValue]="null">Seleccione rol</option>
+        <option *ngFor="let r of roles" [ngValue]="r.idRol">{{ r.nombre }}</option>
+      </select>
+      <small class="field-error" *ngIf="mensajeCampo('idRol')">{{ mensajeCampo('idRol') }}</small>
     </div>
     <div class="field checkbox-field">
       <p-checkbox [binary]="true" formControlName="activo"></p-checkbox>

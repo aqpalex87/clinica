@@ -34,6 +34,8 @@ namespace Microsoft.Extensions.DependencyInjection
 
             services.AddScoped<ISedesService, SedesService>();
             services.AddScoped<ISedesRepository, SedesRepository>();
+            services.AddScoped<IPacienteRepository, PacienteRepository>();
+            services.AddScoped<IPacienteService, PacienteService>();
         }
     }
 }

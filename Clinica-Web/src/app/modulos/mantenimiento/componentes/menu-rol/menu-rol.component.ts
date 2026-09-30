@@ -2,11 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { TreeNode } from 'primeng/api';
 import { ToastrService } from 'ngx-toastr';
 import { finalize, timeout } from 'rxjs/operators';
-import { EmpresaAuth } from 'src/app/models/empresa-sede.interface';
 import { GuardarMenuRolRequest, MenuRolTree, RolSimple } from 'src/app/models/menu-rol.interface';
 import { MenuRolAdminService } from 'src/app/services/menu-rol-admin.service';
 import { SecurityService } from 'src/app/services/security.service';
-import { parseEmpresasMCAjax } from 'src/app/shared/utils/MC-ajax-empresas.util';
 import { mensajeErrorApi } from 'src/app/shared/utils/mc-api-error.util';
 
 @Component({
@@ -15,14 +13,13 @@ import { mensajeErrorApi } from 'src/app/shared/utils/mc-api-error.util';
   styleUrls: ['./menu-rol.component.css'],
 })
 export class MenuRolComponent implements OnInit {
-  empresas: EmpresaAuth[] = [];
   roles: RolSimple[] = [];
   menuTree: TreeNode[] = [];
   selectedNodes: TreeNode[] = [];
 
   idEmpresaSesion = 0;
   empresaNombre = '';
-  idEmpresa: number | null = null;
+  sedeNombre = '';
   idRol: number | null = null;
 
   loading = false;
@@ -38,20 +35,21 @@ export class MenuRolComponent implements OnInit {
   ngOnInit(): void {
     this.idEmpresaSesion = Number(this.securityService.leerIdEmpresa() || 0);
     this.empresaNombre = this.securityService.leerEmpresa() || '-';
-    this.cargarEmpresas();
+    this.sedeNombre = this.securityService.leerSede() || '-';
+    this.cargarRoles();
   }
 
-  onEmpresaChange(): void {
+  private cargarRoles(): void {
     this.idRol = null;
     this.menuTree = [];
     this.selectedNodes = [];
     this.roles = [];
-    if (!this.idEmpresa || this.idEmpresa <= 0) {
+    if (!this.idEmpresaSesion || this.idEmpresaSesion <= 0) {
       return;
     }
 
     this.loading = true;
-    this.menuRolService.obtenerRolesPorEmpresa(this.idEmpresa)
+    this.menuRolService.obtenerRolesPorEmpresa(this.idEmpresaSesion)
       .pipe(
         timeout(15000),
         finalize(() => (this.loading = false))
@@ -115,26 +113,6 @@ export class MenuRolComponent implements OnInit {
       .subscribe({
         next: () => this.toastr.success('Menús del rol guardados correctamente.'),
         error: (err) => this.toastr.error(mensajeErrorApi(err, 'No se pudieron guardar los menús del rol.')),
-      });
-  }
-
-  private cargarEmpresas(): void {
-    this.loading = true;
-    this.securityService.obtenerEmpresasApi()
-      .pipe(
-        timeout(15000),
-        finalize(() => (this.loading = false))
-      )
-      .subscribe({
-        next: (res: any) => {
-          this.empresas = parseEmpresasMCAjax(res);
-
-          if (this.idEmpresaSesion > 0 && this.empresas.some(x => x.idEmpresa === this.idEmpresaSesion)) {
-            this.idEmpresa = this.idEmpresaSesion;
-            this.onEmpresaChange();
-          }
-        },
-        error: (err) => this.toastr.error(mensajeErrorApi(err, 'No se pudo obtener la lista de empresas.')),
       });
   }
 
